@@ -2,7 +2,7 @@
 
 > Juno verse UI library
 
-[![NPM](https://img.shields.io/npm/v/venus.svg)](https://www.npmjs.com/package/venus) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/junoblocks.svg)](https://www.npmjs.com/package/junoblocks) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
@@ -14,12 +14,25 @@ yarn add junoblocks
 
 ```tsx
 import React, { Component } from 'react'
-import { MyComponent } from 'junoblocks'
+import { Button, Text, styled } from 'junoblocks'
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+const StyledText = styled(Text, {
+	textTransform: 'uppercase',
+  // Access internal theme variables using tokens
+  padding: '$1 0',
+  // read more https://stitches.dev/docs/tokens
+  color: '$textColor.success'
+})
+
+const Example = () => {
+	return (
+		<>
+      <StyledText variant="hero">Welcome to Junoblocks!</StyledText>
+      <Button variant="primary">
+        Join our team here
+      </Button>
+    </>
+  )
 }
 ```
 

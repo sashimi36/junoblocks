@@ -34,15 +34,8 @@ const DisplayButtonVariant = ({ variantName, renderedButton }) => {
 				{variantName}
 			</Text>
 			<div style={{ paddingRight: 8, display: 'flex' }}>
-				<div style={{ paddingRight: 8 }}>
-					<Text css={{ padding: '2px 0' }}>Regular</Text>
-					{renderedButton}
-				</div>
-
-				<div>
-					<Text css={{ padding: '2px 0' }}>Disabled</Text>
-					{React.cloneElement(renderedButton, { disabled: true })}
-				</div>
+				<div style={{ paddingRight: 8 }}>{renderedButton}</div>
+				<div>{React.cloneElement(renderedButton, { disabled: true })}</div>
 			</div>
 		</div>
 	)
