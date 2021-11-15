@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-yarn add junoblocks
+yarn add https://github.com/sashimi36/junoblocks
 ```
 
 ## Usage
