@@ -17,7 +17,7 @@ import React, { Component } from 'react'
 import { Button, Text, styled } from 'junoblocks'
 
 const StyledText = styled(Text, {
-	textTransform: 'uppercase',
+  textTransform: 'uppercase',
   // Access internal theme variables using tokens
   padding: '$1 0',
   // read more https://stitches.dev/docs/tokens
@@ -25,12 +25,10 @@ const StyledText = styled(Text, {
 })
 
 const Example = () => {
-	return (
-		<>
+  return (
+    <>
       <StyledText variant="hero">Welcome to Junoblocks!</StyledText>
-      <Button variant="primary">
-        Join our team here
-      </Button>
+      <Button variant="primary" onClick={() => redirectToTheMoon()}>Join our team here</Button>
     </>
   )
 }
