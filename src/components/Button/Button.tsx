@@ -1,6 +1,7 @@
-import { ForwardedRef, forwardRef, ReactNode } from 'react'
+import { ForwardedRef, ReactNode, forwardRef } from 'react'
 import type { VariantProps } from '@stitches/react'
 import { styled } from '../../stitches.config'
+import { GetRenderAsPropsType, RenderAsType } from '../../types'
 
 const resetStyles = {
 	border: 'none',
@@ -124,16 +125,18 @@ const StyledButton = styled('button', {
 	}
 })
 
-type ButtonProps = VariantProps<typeof StyledButton> & {
-	children?: ReactNode
-	// @todo iconLeft;
-	// @todo iconRight;
-	// @todo icon;
-}
+type ButtonProps<T extends RenderAsType = 'button'> = GetRenderAsPropsType<T> &
+	VariantProps<typeof StyledButton> & {
+		as?: T
+		children?: ReactNode
+		// @todo iconLeft;
+		// @todo iconRight;
+		// @todo icon;
+	}
 
-const ButtonComponent = ({ children, ...props }: ButtonProps, ref?: ForwardedRef<any>) => {
+function ButtonComponent<T extends RenderAsType = 'button'>({ children, as, ...props }: ButtonProps<T>, ref?: ForwardedRef<any>) {
 	return (
-		<StyledButton ref={ref} {...props}>
+		<StyledButton ref={ref} {...props} as={as}>
 			{children}
 		</StyledButton>
 	)
