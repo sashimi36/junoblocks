@@ -2,10 +2,12 @@ import 'focus-visible'
 import React, { Children } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
+import { LinkIcon, ChevronDownIcon } from '../../icons/solid'
 import { Button } from './Button'
 import { Text } from '../Text'
 
 import { boolean, select, text } from '@storybook/addon-knobs'
+import { Icon } from '../Icon'
 
 export default {
 	title: 'Components/Button',
@@ -30,7 +32,7 @@ const RowWrapper = ({ children }) => {
 const DisplayButtonVariant = ({ variantName, renderedButton }) => {
 	return (
 		<div>
-			<Text css={{ padding: '10px 0' }} variant="title">
+			<Text css={{ padding: '10px 0' }} variant='title'>
 				{variantName}
 			</Text>
 			<div style={{ paddingRight: 8, display: 'flex' }}>
@@ -44,34 +46,48 @@ const DisplayButtonVariant = ({ variantName, renderedButton }) => {
 export const Story: ComponentStory<typeof Button> = () => {
 	const buttonLabel = 'Connect wallet'
 	const sizes = ['large', 'medium'] as const
+
+	const additionalProps = {} as any
+
+	const iconLeftEnabled = boolean('Render icon on the left', true)
+	const iconRightEnabled = boolean('Render icon on the right', false)
+
+	if (iconLeftEnabled) {
+		additionalProps.iconLeft = <Icon icon={LinkIcon} />
+	}
+
+	if (iconRightEnabled) {
+		additionalProps.iconRight = <Icon icon={ChevronDownIcon} />
+	}
+
 	return (
 		<>
 			{sizes.map((size) => (
 				<React.Fragment key={size}>
-					<Text css={{ textTransform: 'capitalize', padding: '16px 0 4px' }} variant="hero">
+					<Text css={{ textTransform: 'capitalize', padding: '16px 0 4px' }} variant='hero'>
 						{size}
 					</Text>
 					<RowWrapper>
 						<DisplayButtonVariant
-							variantName="Primary"
+							variantName='Primary'
 							renderedButton={
-								<Button variant="primary" size={size}>
+								<Button variant='primary' size={size} {...additionalProps}>
 									{buttonLabel}
 								</Button>
 							}
 						/>
 						<DisplayButtonVariant
-							variantName="Secondary"
+							variantName='Secondary'
 							renderedButton={
-								<Button variant="secondary" size={size}>
+								<Button variant='secondary' size={size} {...additionalProps}>
 									{buttonLabel}
 								</Button>
 							}
 						/>
 						<DisplayButtonVariant
-							variantName="Ghost"
+							variantName='Ghost'
 							renderedButton={
-								<Button variant="ghost" size={size}>
+								<Button variant='ghost' size={size} {...additionalProps}>
 									{buttonLabel}
 								</Button>
 							}
@@ -89,8 +105,17 @@ export const Playground: ComponentStory<typeof Button> = () => {
 	const label = text('text', 'Connect wallet')
 	const disabled = boolean('disabled', false)
 
+	const iconLeftEnabled = boolean('Render icon on the left', true)
+	const iconRightEnabled = boolean('Render icon on the right', false)
+
 	return (
-		<Button variant={variant} size={size} disabled={disabled}>
+		<Button
+			variant={variant}
+			size={size}
+			disabled={disabled}
+			iconLeft={iconLeftEnabled && <Icon icon={LinkIcon} />}
+			iconRight={iconRightEnabled && <Icon icon={ChevronDownIcon} />}
+		>
 			{label}
 		</Button>
 	)

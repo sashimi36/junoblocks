@@ -1,7 +1,7 @@
 import { styled } from '../../stitches.config'
 import { ForwardedRef, forwardRef, ReactNode } from 'react'
 import { VariantProps } from '@stitches/react'
-import { GetRenderAsPropsType, RenderAsType } from '../../types'
+import { GetRenderAsProps, RenderAsType } from '../../types'
 
 const StyledText = styled('p', {
 	fontFamily: '$primary',
@@ -73,12 +73,15 @@ const StyledText = styled('p', {
 })
 
 type TextProps<T extends RenderAsType = 'p'> = VariantProps<typeof StyledText> &
-	GetRenderAsPropsType<T> & {
-		// @todo add color tokens
+	GetRenderAsProps<T> & {
+		as?: T
 		children?: ReactNode
 	}
 
-function TextComponent<T extends RenderAsType = 'p'>({ children, as, ...props }: TextProps<T>, ref?: ForwardedRef<any>) {
+function TextComponent<T extends RenderAsType = 'p'>(
+	{ children, as, ...props }: TextProps<T>,
+	ref?: ForwardedRef<any>
+) {
 	return (
 		<StyledText ref={ref} as={as} {...props}>
 			{children}

@@ -1,7 +1,7 @@
 import { ForwardedRef, ReactNode, forwardRef } from 'react'
 import type { VariantProps } from '@stitches/react'
 import { styled } from '../../stitches.config'
-import { GetRenderAsPropsType, RenderAsType } from '../../types'
+import { GetRenderAsProps, RenderAsType } from '../../types'
 
 const resetStyles = {
 	border: 'none',
@@ -34,12 +34,29 @@ const StyledButton = styled('button', {
 	transition: 'background 0.15s ease-out',
 
 	variants: {
+		icon: {
+			left: {
+				display: 'grid',
+				gridTemplateAreas: '"a b"',
+				columnGap: '2px'
+			},
+			right: {
+				display: 'grid',
+				columnGap: '2px',
+				gridTemplateAreas: '"a b"'
+			},
+			both: {
+				display: 'grid',
+				columnGap: '2px',
+				gridTemplateAreas: '"a b c"'
+			}
+		},
 		size: {
 			large: {
-				padding: '9px 16px 10px 16px'
+				padding: '11px 16px'
 			},
 			medium: {
-				padding: '5px 16px 6px 16px'
+				padding: '7px 16px'
 			}
 		},
 		variant: {
@@ -116,6 +133,56 @@ const StyledButton = styled('button', {
 			css: {
 				color: 'rgba(25, 29, 32, 0.3)'
 			}
+		},
+		{
+			size: 'medium',
+			icon: 'left',
+			css: {
+				paddingLeft: 6,
+				paddingTop: 4,
+				paddingBottom: 4
+			}
+		},
+		{
+			size: 'medium',
+			icon: 'right',
+			css: {
+				paddingRight: 6,
+				paddingTop: 4,
+				paddingBottom: 4
+			}
+		},
+		{
+			size: 'medium',
+			icon: 'both',
+			css: {
+				padding: '4px 6px'
+			}
+		},
+		{
+			size: 'large',
+			icon: 'left',
+			css: {
+				paddingLeft: 6,
+				paddingTop: 8,
+				paddingBottom: 8
+			}
+		},
+		{
+			size: 'large',
+			icon: 'right',
+			css: {
+				paddingRight: 6,
+				paddingTop: 8,
+				paddingBottom: 8
+			}
+		},
+		{
+			size: 'large',
+			icon: 'both',
+			css: {
+				padding: '8px 6px'
+			}
 		}
 	],
 
@@ -125,19 +192,31 @@ const StyledButton = styled('button', {
 	}
 })
 
-type ButtonProps<T extends RenderAsType = 'button'> = GetRenderAsPropsType<T> &
-	VariantProps<typeof StyledButton> & {
+type ButtonProps<T extends RenderAsType = 'button'> = GetRenderAsProps<T> &
+	Omit<VariantProps<typeof StyledButton>, 'icon'> & {
 		as?: T
 		children?: ReactNode
-		// @todo iconLeft;
-		// @todo iconRight;
+		iconLeft?: ReactNode
+		iconRight?: ReactNode
 		// @todo icon;
 	}
 
-function ButtonComponent<T extends RenderAsType = 'button'>({ children, as, ...props }: ButtonProps<T>, ref?: ForwardedRef<any>) {
+function ButtonComponent<T extends RenderAsType = 'button'>(
+	{ children, as, iconLeft, iconRight, ...props }: ButtonProps<T>,
+	ref?: ForwardedRef<any>
+) {
+	const getIconVariant = () => {
+		if (iconLeft && iconRight) return 'both'
+		if (iconLeft) return 'left'
+		if (iconRight) return 'right'
+		return undefined
+	}
+
 	return (
-		<StyledButton ref={ref} {...props} as={as}>
+		<StyledButton icon={getIconVariant()} ref={ref} {...props} as={as}>
+			{iconLeft}
 			{children}
+			{iconRight}
 		</StyledButton>
 	)
 }
