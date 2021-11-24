@@ -22,7 +22,8 @@
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && yarn install && yarn run build",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "format": "prettier-eslint --write \"{,!(node_modules)/**/}*.{js,jsx}\""
   },
   "peerDependencies": {
     "@stitches/react": "^1.2.5",
@@ -59,7 +60,8 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "prettier-eslint-cli": "^5.0.1"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.5",

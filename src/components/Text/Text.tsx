@@ -4,89 +4,89 @@ import { VariantProps } from '@stitches/react'
 import { GetRenderAsProps, RenderAsType } from '../../types'
 
 const StyledText = styled('p', {
-	fontFamily: '$primary',
-	margin: 0,
-	padding: 0,
+  fontFamily: '$primary',
+  margin: 0,
+  padding: 0,
 
-	variants: {
-		variant: {
-			hero: {
-				fontSize: '$1',
-				lineHeight: '$1',
-				fontWeight: '$bold',
-				color: '$textColors.primary'
-			},
-			header: {
-				fontSize: '$2',
-				lineHeight: '$2',
-				fontWeight: '$semiBold',
-				color: '$textColors.primary'
-			},
-			title: {
-				fontSize: '$3',
-				lineHeight: '$3',
-				fontWeight: '$semiBold',
-				color: '$textColors.primary'
-			},
-			primary: {
-				fontSize: '$4',
-				lineHeight: '$3',
-				fontWeight: '$medium',
-				color: '$textColors.body'
-			},
-			body: {
-				fontSize: '$5',
-				lineHeight: '$3',
-				fontWeight: '$normal',
-				color: '$textColors.body'
-			},
-			link: {
-				fontSize: '$6',
-				lineHeight: '$3',
-				fontWeight: '$normal',
-				color: '$textColors.body'
-			},
-			secondary: {
-				fontSize: '$6',
-				lineHeight: '$4',
-				fontWeight: '$normal',
-				color: '$textColors.secondary'
-			},
-			legend: {
-				fontSize: '$7',
-				lineHeight: '$4',
-				fontWeight: '$normal',
-				color: '$textColors.secondary'
-			},
-			caption: {
-				fontSize: '$7',
-				lineHeight: '$4',
-				fontWeight: '$normal',
-				color: '$textColors.tertiary'
-			}
-		}
-	},
+  variants: {
+    variant: {
+      hero: {
+        fontSize: '$1',
+        lineHeight: '$1',
+        fontWeight: '$bold',
+        color: '$textColors.primary'
+      },
+      header: {
+        fontSize: '$2',
+        lineHeight: '$2',
+        fontWeight: '$semiBold',
+        color: '$textColors.primary'
+      },
+      title: {
+        fontSize: '$3',
+        lineHeight: '$3',
+        fontWeight: '$semiBold',
+        color: '$textColors.primary'
+      },
+      primary: {
+        fontSize: '$4',
+        lineHeight: '$3',
+        fontWeight: '$medium',
+        color: '$textColors.body'
+      },
+      body: {
+        fontSize: '$5',
+        lineHeight: '$3',
+        fontWeight: '$normal',
+        color: '$textColors.body'
+      },
+      link: {
+        fontSize: '$6',
+        lineHeight: '$3',
+        fontWeight: '$normal',
+        color: '$textColors.body'
+      },
+      secondary: {
+        fontSize: '$6',
+        lineHeight: '$4',
+        fontWeight: '$normal',
+        color: '$textColors.secondary'
+      },
+      legend: {
+        fontSize: '$7',
+        lineHeight: '$4',
+        fontWeight: '$normal',
+        color: '$textColors.secondary'
+      },
+      caption: {
+        fontSize: '$7',
+        lineHeight: '$4',
+        fontWeight: '$normal',
+        color: '$textColors.tertiary'
+      }
+    }
+  },
 
-	defaultVariants: {
-		variant: 'body'
-	}
+  defaultVariants: {
+    variant: 'body'
+  }
 })
 
 type TextProps<T extends RenderAsType = 'p'> = VariantProps<typeof StyledText> &
-	GetRenderAsProps<T> & {
-		as?: T
-		children?: ReactNode
-	}
+  GetRenderAsProps<T> & {
+    as?: T
+    children?: ReactNode
+  }
 
 function TextComponent<T extends RenderAsType = 'p'>(
-	{ children, as, ...props }: TextProps<T>,
-	ref?: ForwardedRef<any>
+  { children, as, ...props }: TextProps<T>,
+  ref?: ForwardedRef<any>
 ) {
-	return (
-		<StyledText ref={ref} as={as} {...props}>
-			{children}
-		</StyledText>
-	)
+  return (
+    <StyledText ref={ref} as={as} {...props}>
+      {children}
+    </StyledText>
+  )
 }
 
 export const Text = forwardRef(TextComponent) as typeof TextComponent
