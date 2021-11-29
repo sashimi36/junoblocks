@@ -14,55 +14,55 @@ const StyledText = styled('p', {
         fontSize: '$1',
         lineHeight: '$1',
         fontWeight: '$bold',
-        color: '$textColors.primary'
+        color: '$textColors$primary'
       },
       header: {
         fontSize: '$2',
         lineHeight: '$2',
         fontWeight: '$semiBold',
-        color: '$textColors.primary'
+        color: '$textColors$primary'
       },
       title: {
         fontSize: '$3',
         lineHeight: '$3',
         fontWeight: '$semiBold',
-        color: '$textColors.primary'
+        color: '$textColors$primary'
       },
       primary: {
         fontSize: '$4',
         lineHeight: '$3',
         fontWeight: '$medium',
-        color: '$textColors.body'
+        color: '$textColors$body'
       },
       body: {
         fontSize: '$5',
         lineHeight: '$3',
         fontWeight: '$normal',
-        color: '$textColors.body'
+        color: '$textColors$body'
       },
       link: {
         fontSize: '$6',
         lineHeight: '$3',
-        fontWeight: '$normal',
-        color: '$textColors.body'
+        fontWeight: '$medium',
+        color: '$textColors$body'
       },
       secondary: {
         fontSize: '$6',
         lineHeight: '$4',
         fontWeight: '$normal',
-        color: '$textColors.secondary'
+        color: '$textColors$secondary'
       },
       legend: {
         fontSize: '$7',
         lineHeight: '$4',
         fontWeight: '$normal',
-        color: '$textColors.secondary'
+        color: '$textColors$secondary'
       },
       caption: {
         fontSize: '$7',
         lineHeight: '$4',
         fontWeight: '$normal',
-        color: '$textColors.tertiary'
+        color: '$textColors$tertiary'
       }
     }
   },

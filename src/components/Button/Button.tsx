@@ -27,9 +27,12 @@ const StyledButton = styled('button', {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  fontWeight: '$medium',
-  lineHeight: '$medium',
   whiteSpace: 'pre',
+
+  fontSize: '$6',
+  lineHeight: '$3',
+  fontWeight: '$medium',
+  color: '$textColors$body',
 
   transition: 'background 0.15s ease-out',
 
@@ -76,7 +79,7 @@ const StyledButton = styled('button', {
       },
       secondary: {
         backgroundColor: '#e8e9e9',
-        color: '$textColors.primary',
+        color: '$textColors$primary',
         '&:hover': {
           backgroundColor: 'rgba(25, 29, 32, 0.2)'
         },

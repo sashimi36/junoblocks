@@ -60,8 +60,10 @@ export const { theme, styled, css } = createStitches({
       3: '15px'
     },
     fonts: {
+      mono: 'JetBrains Mono',
       primary:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
+        // eslint-disable-next-line max-len
+        '"Inter", "system-ui", Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
     },
     fontSizes: {
       1: '26px',
