@@ -1,101 +1,62 @@
 {
   "name": "junoblocks",
   "version": "0.1.0",
-  "description": "Juno UI library",
   "author": "sashimi36",
   "license": "MIT",
-  "repository": "sashimi36/junoverse",
+  "repository": "https://github.com/sashimi36/junoblocks",
   "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "source": "src/index.tsx",
-  "engines": {
-    "node": ">=10"
-  },
+  "types": "dist/src/index.d.ts",
   "scripts": {
-    "build": "microbundle --no-compress --format modern,cjs",
-    "start": "microbundle watch --no-compress --format modern,cjs",
-    "prepare": "run-s build",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint .",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist && tsc && rollup --config ",
+    "tsc": "tsc"
   },
-  "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "@stitches/react": "^1.2.5",
-    "focus-visible": "^5.2.0"
-  },
+  "files": ["dist"],
+  "keywords": [],
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@storybook/addon-actions": "^6.3.12",
-    "@storybook/addon-essentials": "^6.3.12",
-    "@storybook/addon-knobs": "^6.3.1",
-    "@storybook/addon-links": "^6.3.12",
-    "@storybook/react": "^6.3.12",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "@types/jest": "^25.1.4",
-    "@types/node": "^12.12.38",
-    "@types/react": "^17.0.34",
-    "@types/react-dom": "^17.0.11",
-    "@typescript-eslint/eslint-plugin": "^2.26.0",
-    "@typescript-eslint/parser": "^2.26.0",
-    "babel-eslint": "^10.0.3",
-    "babel-loader": "^8.2.3",
-    "cross-env": "^7.0.2",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^6.7.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-config-standard-react": "^9.2.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.17.0",
-    "eslint-plugin-standard": "^4.0.1",
-    "prettier": "^2.4.1"
-  },
-  "dependencies": {
-    "@stitches/react": "^1.2.5",
+    "@babel/core": "^7.17.9",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-transform-react-jsx": "^7.17.3",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@babel/runtime": "^7.17.9",
+    "@storybook/addon-knobs": "^6.4.0",
+    "@storybook/react": "^6.4.22",
+    "@rollup/plugin-commonjs": "^21.1.0",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-node-resolve": "^13.2.0",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.70.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.6.3",
+    "react": "^17.0.2 || 18.x",
+    "react-dom": "^17.0.2 || 18.x",
+    "recoil": "^0.7.2",
+    "color": "^4.2.3",
     "focus-visible": "^5.2.0",
-    "microbundle": "^0.14.1",
-    "npm-run-all": "^4.1.5",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "^3.4.1",
-    "typescript": "4.4.3"
+    "gsap": "^3.10.3",
+    "body-scroll-lock": "^4.0.0-beta.0",
+    "@stitches/react": ">=1.2.7",
+    "@react-spring/web": "^9.4.4",
+    "@reach/portal": "^0.16.2",
+    "@reach/tooltip": "^0.16.2"
   },
-  "files": [
-    "dist"
-  ],
-  "prettier": {
-    "arrowParens": "always",
-    "bracketSpacing": true,
-    "printWidth": 240,
-    "quoteProps": "as-needed",
-    "semi": false,
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "none",
-    "useTabs": true,
-    "overrides": [
-      {
-        "files": [
-          "*.json",
-          "*.md",
-          ".prettierrc",
-          "*.yml"
-        ],
-        "options": {
-          "useTabs": false
-        }
-      }
-    ]
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^16.8.0 || 18.x",
+    "react-dom": "^16.8.0 || 18.x",
+    "recoil": "^0.7.2",
+    "color": "^4.2.3",
+    "focus-visible": "^5.2.0",
+    "gsap": "^3.10.3",
+    "body-scroll-lock": "^4.0.0-beta.0",
+    "@stitches/react": ">=1.2.7",
+    "@react-spring/web": "^9.4.4",
+    "@reach/portal": "^0.16.2",
+    "@reach/tooltip": "^0.16.2"
   }
 }

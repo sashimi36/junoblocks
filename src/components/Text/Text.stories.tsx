@@ -1,4 +1,3 @@
-import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { Text } from './Text'
@@ -40,17 +39,7 @@ export const Story: ComponentStory<typeof Text> = () => {
 export const Playground: ComponentStory<typeof Text> = () => {
   const variant = select(
     'variant',
-    [
-      'hero',
-      'header',
-      'title',
-      'primary',
-      'body',
-      'link',
-      'secondary',
-      'legend',
-      'caption'
-    ],
+    ['hero', 'header', 'title', 'primary', 'body', 'link', 'secondary', 'legend', 'caption'],
     'hero'
   )
   const as = select('as', ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'], 'h1')
