@@ -1,6 +1,6 @@
 {
   "name": "junoblocks",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "sashimi36",
   "license": "MIT",
   "repository": "https://github.com/sashimi36/junoblocks",
@@ -11,7 +11,7 @@
     "build": "rimraf dist && tsc && rollup --config ",
     "tsc": "tsc"
   },
-  "files": ["dist"],
+  "files": ["dist", "README.md"],
   "keywords": [],
   "devDependencies": {
     "@babel/core": "^7.17.9",

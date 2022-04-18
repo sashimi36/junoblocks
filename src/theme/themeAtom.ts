@@ -1,17 +1,17 @@
 import { atom } from 'recoil'
 
-import { localStorageEffect } from '../util/localStorageEffect'
+import { localStorageEffect } from 'util'
 
-export enum AppTheme {
+export enum ThemeTokens {
   dark = 'dark',
-  light = 'light',
+  light = 'light'
 }
 
-export const themeAtom = atom<{ theme: AppTheme; touched: boolean }>({
+export const themeAtom = atom<{ theme: ThemeTokens; touched: boolean }>({
   key: '@theme',
   default: {
-    theme: AppTheme.light,
-    touched: false,
+    theme: ThemeTokens.light,
+    touched: false
   },
-  effects_UNSTABLE: [localStorageEffect('@theme')],
+  effects_UNSTABLE: [localStorageEffect('@theme')]
 })
