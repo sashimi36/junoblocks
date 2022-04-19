@@ -1,6 +1,6 @@
 import { atom } from 'recoil'
 
-import { localStorageEffect } from 'util'
+import { localStorageEffect } from '../util'
 
 export enum ThemeTokens {
   dark = 'dark',
