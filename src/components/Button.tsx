@@ -5,7 +5,7 @@ import {
   ForwardedRef,
   forwardRef,
   ReactElement,
-  ReactNode,
+  ReactNode
 } from 'react'
 import { createColorVariants, styled } from 'theme'
 
@@ -39,30 +39,30 @@ const StyledButton = styled('button', {
   transition: 'background 0.15s ease-out',
 
   '&:hover': {
-    backgroundColor: '$$backgroundColorOnHover',
+    backgroundColor: '$$backgroundColorOnHover'
   },
   '&:active': {
-    backgroundColor: '$$backgroundColorOnActive',
+    backgroundColor: '$$backgroundColorOnActive'
   },
   '&:focus.focus-visible': {
-    boxShadow: '0 0 0 $space$1 $$borderColorOnFocus',
+    boxShadow: '0 0 0 $space$1 $$borderColorOnFocus'
   },
 
   '& svg': {
-    color: '$$iconColor',
+    color: '$$iconColor'
   },
 
   variants: {
     state: {
       hovered: {
-        backgroundColor: '$$backgroundColorOnHover',
+        backgroundColor: '$$backgroundColorOnHover'
       },
       active: {
-        backgroundColor: '$$backgroundColorOnActive',
+        backgroundColor: '$$backgroundColorOnActive'
       },
       focused: {
-        boxShadow: '0 0 0 $space$1 $$borderColorOnFocus',
-      },
+        boxShadow: '0 0 0 $space$1 $$borderColorOnFocus'
+      }
     },
 
     variant: {
@@ -74,7 +74,7 @@ const StyledButton = styled('button', {
         $$backgroundColorOnHover: '$colors$black',
         $$backgroundColorOnActive: '$colors$dark85',
 
-        $$borderColorOnFocus: '$borderColors$selected',
+        $$borderColorOnFocus: '$borderColors$selected'
       },
       secondary: {
         $$textColor: '$textColors$primary',
@@ -84,7 +84,7 @@ const StyledButton = styled('button', {
         $$backgroundColorOnHover: '$colors$dark20',
         $$backgroundColorOnActive: '$colors$dark5',
 
-        $$borderColorOnFocus: '$borderColors$selected',
+        $$borderColorOnFocus: '$borderColors$selected'
       },
       ghost: {
         $$textColor: '$textColors$secondary',
@@ -95,7 +95,7 @@ const StyledButton = styled('button', {
         $$backgroundColorOnActive: '$colors$dark5',
         $$backgroundColorOnSelected: '$colors$dark10',
 
-        $$borderColorOnFocus: '$borderColors$selected',
+        $$borderColorOnFocus: '$borderColors$selected'
       },
       menu: {
         fontSize: '$fontSizes$product$body',
@@ -108,8 +108,8 @@ const StyledButton = styled('button', {
         $$backgroundColorOnHover: '$colors$brand25',
         $$backgroundColorOnActive: '$colors$brand15',
 
-        $$borderColorOnFocus: '$borderColors$selected',
-      },
+        $$borderColorOnFocus: '$borderColors$selected'
+      }
     },
 
     icon: {
@@ -117,13 +117,13 @@ const StyledButton = styled('button', {
         display: 'flex',
         columnGap: '$space$1',
         flexDirection: 'row',
-        justifyContent: 'start',
+        justifyContent: 'start'
       },
       right: {
         display: 'flex',
         flexDirection: 'row',
         columnGap: '$space$1',
-        justifyContent: 'space-between',
+        justifyContent: 'space-between'
       },
       both: {
         display: 'flex',
@@ -132,10 +132,10 @@ const StyledButton = styled('button', {
         justifyContent: 'space-between',
         '& [data-text]': {
           flex: 1,
-          textAlign: 'left',
-        },
+          textAlign: 'left'
+        }
       },
-      only: {},
+      only: {}
     },
     size: {
       huge: {
@@ -143,50 +143,50 @@ const StyledButton = styled('button', {
         textTransform: 'uppercase',
         fontSize: '$fontSizes$studio$button',
         lineHeight: '$lineHeight$studio$button',
-        fontWeight: '$fontWeight$studio$button',
+        fontWeight: '$fontWeight$studio$button'
       },
       large: {
-        padding: '$6 $8',
+        padding: '$6 $8'
       },
       medium: {
-        padding: '$3 $8',
+        padding: '$3 $8'
       },
       small: {
-        padding: '$2 $4',
-      },
+        padding: '$2 $4'
+      }
     },
 
     disabled: {
       true: {
         pointerEvents: 'none',
-        cursor: 'not-allowed',
+        cursor: 'not-allowed'
       },
-      false: {},
+      false: {}
     },
     allowInteractivity: {
       true: {
         pointerEvents: 'unset',
-        cursor: 'pointer',
-      },
+        cursor: 'pointer'
+      }
     },
     dropdownVisible: {
       true: {
-        borderRadius: '$1 $1 0 0',
-      },
+        borderRadius: '$1 $1 0 0'
+      }
     },
     selected: {
       true: {
-        backgroundColor: '$$backgroundColorOnSelected',
+        backgroundColor: '$$backgroundColorOnSelected'
       },
-      false: {},
+      false: {}
     },
 
     iconColor: createColorVariants('iconColors', (colorToken) => ({
-      $$iconColor: `$iconColors$${colorToken}`,
+      $$iconColor: `$iconColors$${colorToken}`
     })),
     textColor: createColorVariants('textColors', (colorToken) => ({
-      $$textColor: `$textColors$${colorToken}`,
-    })),
+      $$textColor: `$textColors$${colorToken}`
+    }))
   },
 
   compoundVariants: [
@@ -196,8 +196,8 @@ const StyledButton = styled('button', {
       css: {
         $$backgroundColor: '$colors$dark30',
         $$textColor: '$colors$light95',
-        $$iconColor: '$iconColors$disabled',
-      },
+        $$iconColor: '$iconColors$disabled'
+      }
     },
     {
       variant: 'secondary',
@@ -205,16 +205,16 @@ const StyledButton = styled('button', {
       css: {
         $$backgroundColor: '$colors$dark5',
         $$textColor: '$textColors$disabled',
-        $$iconColor: '$iconColors$disabled',
-      },
+        $$iconColor: '$iconColors$disabled'
+      }
     },
     {
       variant: 'ghost',
       disabled: true,
       css: {
         $$textColor: '$textColors$disabled',
-        $$iconColor: '$iconColors$disabled',
-      },
+        $$iconColor: '$iconColors$disabled'
+      }
     },
 
     {
@@ -223,8 +223,8 @@ const StyledButton = styled('button', {
       css: {
         paddingLeft: '$3',
         paddingTop: '$2',
-        paddingBottom: '$2',
-      },
+        paddingBottom: '$2'
+      }
     },
     {
       icon: 'right',
@@ -232,15 +232,15 @@ const StyledButton = styled('button', {
       css: {
         paddingRight: '$3',
         paddingTop: '$2',
-        paddingBottom: '$2',
-      },
+        paddingBottom: '$2'
+      }
     },
     {
       icon: 'both',
       size: 'medium',
       css: {
-        padding: '$2 $3',
-      },
+        padding: '$2 $3'
+      }
     },
     {
       icon: 'left',
@@ -248,8 +248,8 @@ const StyledButton = styled('button', {
       css: {
         paddingLeft: '$3',
         paddingTop: '$4',
-        paddingBottom: '$4',
-      },
+        paddingBottom: '$4'
+      }
     },
     {
       icon: 'right',
@@ -257,37 +257,37 @@ const StyledButton = styled('button', {
       css: {
         paddingRight: '$3',
         paddingTop: '$4',
-        paddingBottom: '$4',
-      },
+        paddingBottom: '$4'
+      }
     },
     {
       icon: 'both',
       size: 'large',
       css: {
-        padding: '$4 $3',
-      },
+        padding: '$4 $3'
+      }
     },
 
     {
       icon: 'only',
       size: 'medium',
       css: {
-        padding: '$2 $3',
-      },
+        padding: '$2 $3'
+      }
     },
     {
       icon: 'only',
       size: 'small',
       css: {
-        padding: '0',
-      },
-    },
+        padding: '0'
+      }
+    }
   ],
 
   defaultVariants: {
     variant: 'primary',
-    size: 'medium',
-  },
+    size: 'medium'
+  }
 })
 
 export type ButtonProps<T extends RenderAsType = 'button'> = Omit<
@@ -322,24 +322,24 @@ function ButtonComponent<T extends RenderAsType = 'button'>(
       {icon ? (
         cloneElement(Children.only(icon), {
           color: 'inherit',
-          size: '24px',
+          size: 'large'
         })
       ) : (
         <>
           {iconLeft &&
             cloneElement(Children.only(iconLeft), {
               color: 'inherit',
-              size: '24px',
+              size: '24px'
             })}
           {typeof children === 'string' ? (
-            <div data-text="">{children}</div>
+            <div data-text=''>{children}</div>
           ) : (
             children
           )}
           {iconRight &&
             cloneElement(Children.only(iconRight), {
               color: 'inherit',
-              size: '24px',
+              size: 'large'
             })}
         </>
       )}
@@ -350,7 +350,7 @@ function ButtonComponent<T extends RenderAsType = 'button'>(
 const mapIconVariant = ({
   iconRight,
   iconLeft,
-  icon,
+  icon
 }): VariantProps<typeof StyledButton>['icon'] => {
   if (iconLeft && iconRight) return 'both'
   if (iconLeft) return 'left'
@@ -368,6 +368,6 @@ export const ButtonForWrapper = styled(
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    cursor: 'pointer',
+    cursor: 'pointer'
   }
 ) as typeof ButtonComponent

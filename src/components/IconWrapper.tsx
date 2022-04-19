@@ -33,6 +33,12 @@ const StyledIcon = styled('span', {
         height: '1.5rem',
         minWidth: '1.5rem',
         minHeight: '1.5rem'
+      },
+      big: {
+        width: '2rem',
+        height: '2rem',
+        minWidth: '2rem',
+        minHeight: '2rem'
       }
     },
     rotation: {
@@ -40,6 +46,12 @@ const StyledIcon = styled('span', {
         transform: 'rotateZ(90deg)'
       },
       '90deg': {
+        transform: 'rotateZ(90deg)'
+      },
+      '-45deg': {
+        transform: 'rotateZ(90deg)'
+      },
+      '45deg': {
         transform: 'rotateZ(90deg)'
       },
       '180deg': {

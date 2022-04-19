@@ -2,11 +2,11 @@ import { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 
 import { darkTheme, lightTheme } from '../theme'
-import { AppTheme, themeAtom } from '../themeAtom'
+import { ThemeTokens, themeAtom } from '../themeAtom'
 
 export const useTheme = () => {
   const { theme } = useRecoilValue(themeAtom)
-  return theme === AppTheme.dark ? darkTheme : lightTheme
+  return theme === ThemeTokens.dark ? darkTheme : lightTheme
 }
 
 export const useInvertedThemeClassName = () => {
@@ -19,30 +19,31 @@ export const useControlTheme = () => {
 
   return {
     theme,
-    set: (value: AppTheme) => {
+    set: (value: ThemeTokens) => {
       setTheme({
         theme: value,
-        touched: true,
+        touched: true
       })
     },
     setDarkTheme(enabled: boolean) {
       setTheme({
-        theme: enabled ? AppTheme.dark : AppTheme.light,
-        touched: true,
+        theme: enabled ? ThemeTokens.dark : ThemeTokens.light,
+        touched: true
       })
     },
     setLightTheme(enabled: boolean) {
       setTheme({
-        theme: enabled ? AppTheme.light : AppTheme.dark,
-        touched: true,
+        theme: enabled ? ThemeTokens.light : ThemeTokens.dark,
+        touched: true
       })
     },
     toggle() {
       setTheme({
-        theme: theme === AppTheme.dark ? AppTheme.light : AppTheme.dark,
-        touched: true,
+        theme:
+          theme === ThemeTokens.dark ? ThemeTokens.light : ThemeTokens.dark,
+        touched: true
       })
-    },
+    }
   }
 }
 
@@ -52,9 +53,9 @@ export const useSubscribeDefaultAppTheme = () => {
   useEffect(() => {
     function handleChangeTheme(event) {
       if (event.matches) {
-        setTheme({ theme: AppTheme.dark, touched: false })
+        setTheme({ theme: ThemeTokens.dark, touched: false })
       } else {
-        setTheme({ theme: AppTheme.light, touched: false })
+        setTheme({ theme: ThemeTokens.light, touched: false })
       }
     }
 
@@ -63,7 +64,7 @@ export const useSubscribeDefaultAppTheme = () => {
       media.addEventListener('change', handleChangeTheme)
 
       if (media.matches) {
-        setTheme({ theme: AppTheme.dark, touched: false })
+        setTheme({ theme: ThemeTokens.dark, touched: false })
       }
 
       return () => {
@@ -76,7 +77,7 @@ export const useSubscribeDefaultAppTheme = () => {
 export const useThemeClassName = () => {
   const { theme } = useRecoilValue(themeAtom)
 
-  if (theme === AppTheme.dark) {
+  if (theme === ThemeTokens.dark) {
     return darkTheme.className
   }
 
