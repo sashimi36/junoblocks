@@ -1,11 +1,9 @@
 import { useRecoilValue } from 'recoil'
 
-import { darkThemeColorPalette, lightThemeColorPalette } from '../colors'
-import { ThemeTokens, themeAtom } from '../themeAtom'
+import { themeAtom } from '../themeAtom'
+import { usePersistance } from '../../hooks'
 
 export const useColors = () => {
   const { theme } = useRecoilValue(themeAtom)
-  return theme === ThemeTokens.dark
-    ? darkThemeColorPalette
-    : lightThemeColorPalette
+  return usePersistance(theme?.colorPalette)
 }
