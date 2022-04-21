@@ -1,7 +1,7 @@
 import { createTheme } from '@stitches/react'
 import { atom } from 'recoil'
 
-import { localStorageEffect } from '../util'
+import { localStorageEffect } from '../util/localStorageEffect'
 import { darkTheme, lightTheme } from './theme'
 import { darkThemeColorPalette, lightThemeColorPalette } from './colors'
 
