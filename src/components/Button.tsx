@@ -329,7 +329,7 @@ function ButtonComponent<T extends RenderAsType = 'button'>(
           {iconLeft &&
             cloneElement(Children.only(iconLeft), {
               color: 'inherit',
-              size: '24px'
+              size: 'large'
             })}
           {typeof children === 'string' ? (
             <div data-text=''>{children}</div>

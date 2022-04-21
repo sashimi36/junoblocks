@@ -1,7 +1,7 @@
 import { animated, useSpring } from '@react-spring/web'
 import { Union } from 'icons'
 import { Children, cloneElement, ReactElement, ReactNode } from 'react'
-import { darkTheme, lightTheme, styled, useTheme } from 'theme'
+import { styled, useInvertedThemeClassName } from 'theme'
 
 import { Button } from '../Button'
 import { IconWrapper } from '../IconWrapper'
@@ -21,9 +21,7 @@ export const Toast = ({ title, body, buttons, onClose, icon }: ToastProps) => {
     to: { opacity: 1 }
   })
 
-  const theme = useTheme()
-  const themeClassName =
-    theme === lightTheme ? darkTheme.className : lightTheme.className
+  const themeClassName = useInvertedThemeClassName()
 
   return (
     <StyledToast className={themeClassName} style={styles}>

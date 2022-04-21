@@ -14,7 +14,7 @@ export const space = createSpacing({
 export const fontVariants = createFontVariants(typography)
 
 /* build the base theme */
-const baseTheme = {
+export const baseTheme = {
   ...fontVariants,
 
   space,
@@ -75,8 +75,8 @@ export const darkTheme = createTheme({
 export const {
   theme: lightTheme,
   globalCss,
-  styled,
   keyframes,
+  styled,
   css
 } = createStitches({
   theme: {

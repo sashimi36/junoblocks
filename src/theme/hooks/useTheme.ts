@@ -1,47 +1,88 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 
-import { darkTheme, lightTheme } from '../theme'
-import { ThemeTokens, themeAtom } from '../themeAtom'
+import { themeAtom, ThemeConfig } from '../themeAtom'
 
 export const useTheme = () => {
   const { theme } = useRecoilValue(themeAtom)
-  return theme === ThemeTokens.dark ? darkTheme : lightTheme
+  return theme
 }
 
-export const useInvertedThemeClassName = () => {
-  const theme = useTheme()
-  return theme === lightTheme ? darkTheme.className : lightTheme.className
+export const useExtendThemesConfig = (themes: Array<ThemeConfig>) => {
+  const [, setTheme] = useRecoilState(themeAtom)
+
+  useEffect(() => {
+    setTheme((state) => ({
+      ...state,
+      themes
+    }))
+  }, []) // eslint-disable-line
 }
+
+export const useSetDefaultThemeConfig = (theme: ThemeConfig) => {
+  const [, setTheme] = useRecoilState(themeAtom)
+
+  useEffect(() => {
+    setTheme((state) => {
+      return state.touched ? state : { ...state, theme }
+    })
+  }, []) // eslint-disable-line deps
+}
+
+const getDarkTheme = (themes) =>
+  themes.find((t) => t.name === 'dark') || themes[0]
+const getLightTheme = (themes) =>
+  themes.find((t) => t.name === 'light') || themes[0]
 
 export const useControlTheme = () => {
   const [{ theme }, setTheme] = useRecoilState(themeAtom)
 
   return {
     theme,
-    set: (value: ThemeTokens) => {
-      setTheme({
-        theme: value,
-        touched: true
-      })
+    set: (value: ThemeConfig) => {
+      setTheme((prev) => ({ ...prev, theme: value, touched: true }))
     },
     setDarkTheme(enabled: boolean) {
-      setTheme({
-        theme: enabled ? ThemeTokens.dark : ThemeTokens.light,
-        touched: true
+      setTheme((prev) => {
+        const fallbackTheme =
+          prev.theme !== getDarkTheme(prev.themes)
+            ? prev.theme
+            : getLightTheme(prev.themes)
+        return {
+          ...prev,
+          theme: enabled ? getDarkTheme(prev.themes) : fallbackTheme,
+          touched: true
+        }
       })
     },
     setLightTheme(enabled: boolean) {
-      setTheme({
-        theme: enabled ? ThemeTokens.light : ThemeTokens.dark,
-        touched: true
+      setTheme((prev) => {
+        const fallbackTheme =
+          prev.theme !== getLightTheme(prev.themes)
+            ? prev.theme
+            : getDarkTheme(prev.themes)
+        return {
+          ...prev,
+          theme: enabled ? getLightTheme(prev.themes) : fallbackTheme,
+          touched: true
+        }
       })
     },
+    /* should be renamed to something like switchTheme */
     toggle() {
-      setTheme({
-        theme:
-          theme === ThemeTokens.dark ? ThemeTokens.light : ThemeTokens.dark,
-        touched: true
+      setTheme((state) => {
+        const currentTheme = state.theme
+        const currentThemeIndex = state.themes.findIndex(
+          (t) => t === currentTheme
+        )
+
+        const nextThemeIndex = (currentThemeIndex + 1) % state.themes.length
+
+        return {
+          ...state,
+          theme: state.themes[nextThemeIndex],
+          touched: true
+        }
       })
     }
   }
@@ -53,9 +94,17 @@ export const useSubscribeDefaultAppTheme = () => {
   useEffect(() => {
     function handleChangeTheme(event) {
       if (event.matches) {
-        setTheme({ theme: ThemeTokens.dark, touched: false })
+        setTheme((prev) => ({
+          ...prev,
+          theme: getDarkTheme(prev.themes),
+          touched: false
+        }))
       } else {
-        setTheme({ theme: ThemeTokens.light, touched: false })
+        setTheme((prev) => ({
+          ...prev,
+          theme: getLightTheme(prev.themes),
+          touched: false
+        }))
       }
     }
 
@@ -64,7 +113,11 @@ export const useSubscribeDefaultAppTheme = () => {
       media.addEventListener('change', handleChangeTheme)
 
       if (media.matches) {
-        setTheme({ theme: ThemeTokens.dark, touched: false })
+        setTheme((prev) => ({
+          ...prev,
+          theme: getDarkTheme(prev.themes),
+          touched: false
+        }))
       }
 
       return () => {
@@ -77,9 +130,25 @@ export const useSubscribeDefaultAppTheme = () => {
 export const useThemeClassName = () => {
   const { theme } = useRecoilValue(themeAtom)
 
-  if (theme === ThemeTokens.dark) {
-    return darkTheme.className
-  }
+  return theme?.config?.className
+}
 
-  return lightTheme.className
+export const useInvertedThemeClassName = () => {
+  const { theme, themes } = useRecoilValue(themeAtom)
+
+  const { light, dark } = useMemo(() => {
+    if (!themes?.length) return {}
+    if (themes.length === 1) {
+      return {
+        light: themes[0],
+        dark: themes[0]
+      }
+    }
+    return {
+      light: themes.find((t) => t.name === 'light'),
+      dark: themes.find((t) => t.name === 'dark')
+    }
+  }, [themes])
+
+  return theme === light ? dark?.config?.className : light?.config?.className
 }
