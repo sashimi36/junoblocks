@@ -42,7 +42,7 @@ const Example = () => {
 
 ## Storybook
 
-Build library locally and preview documented components using storybook.
+Build junoblocks locally and preview documented components using storybook.
 
 ```bash
 yarn storybook
