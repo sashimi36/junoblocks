@@ -43,16 +43,16 @@ const StyledIcon = styled('span', {
     },
     rotation: {
       '-90deg': {
-        transform: 'rotateZ(90deg)'
+        transform: 'rotateZ(-90deg)'
       },
       '90deg': {
         transform: 'rotateZ(90deg)'
       },
       '-45deg': {
-        transform: 'rotateZ(90deg)'
+        transform: 'rotateZ(-45deg)'
       },
       '45deg': {
-        transform: 'rotateZ(90deg)'
+        transform: 'rotateZ(45deg)'
       },
       '180deg': {
         transform: 'rotateZ(180deg)'
