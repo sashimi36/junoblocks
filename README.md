@@ -50,7 +50,7 @@ yarn storybook
 
 ## Dev mode
 
-This is for parallel development for your app and junoblocks. It will automatically reload the page when you change the code in your local clone of the repo. Currently, the dev mode is only available for the nextjs apps. You'll need to install a plugin for nextjs and clone this repo to the same root directory of your app.
+This is for parallel development for your app and junoblocks. It will automatically reload the page when you change code in your local clone of the repo. Currently, the dev mode is only available for nextjs apps. You'll need to install a plugin for nextjs and clone this repo to the same root directory of your app.
 
 To get started, run this in your nextjs app folder:
 
