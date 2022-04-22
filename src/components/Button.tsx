@@ -86,6 +86,16 @@ const StyledButton = styled('button', {
 
         $$borderColorOnFocus: '$borderColors$selected'
       },
+      branded: {
+        $$textColor: '$textColors$primary',
+        $$iconColor: '$iconColors$primary',
+
+        $$backgroundColor: '$colors$brand95',
+        $$backgroundColorOnHover: '$colors$brand85',
+        $$backgroundColorOnActive: '$colors$brand75',
+
+        $$borderColorOnFocus: '$borderColors$selected'
+      },
       ghost: {
         $$textColor: '$textColors$secondary',
         $$iconColor: '$iconColors$primary',

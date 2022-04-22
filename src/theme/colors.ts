@@ -6,19 +6,20 @@ export const lightThemeColors = {
   dark: '#191D20',
   light: '#F3F6F8',
   white: '#FFFFFF',
-  brand: '#FB9C86',
+  brand: '#4D4CB9',
   secondary: '#FBBAA4',
   error: '#C73E59',
-  valid: '#39A699',
+  valid: '#39A699'
 }
 
 /* invert light theme main tokens to get the dark theme tokens */
 export const darkThemeColors = {
   ...lightThemeColors,
+  brand: '#5756D5',
   white: lightThemeColors.black,
   black: lightThemeColors.white,
   light: lightThemeColors.dark,
-  dark: lightThemeColors.light,
+  dark: lightThemeColors.light
 }
 
 /* build theme color tokens */
@@ -32,7 +33,7 @@ export const themeColorTokens = {
     disabled: '$colors$dark40',
     brand: '$colors$brand90',
     error: '$colors$error90',
-    valid: '$colors$valid90',
+    valid: '$colors$valid90'
   },
 
   iconColors: {
@@ -42,7 +43,7 @@ export const themeColorTokens = {
     disabled: '$colors$dark30',
     brand: '$colors$brand85',
     error: '$colors$error85',
-    valid: '$colors$valid85',
+    valid: '$colors$valid85'
   },
 
   backgroundColors: {
@@ -56,7 +57,7 @@ export const themeColorTokens = {
     tooltip: '$colors$dark95',
     tint: '$colors$secondary20',
     error: '$colors$error15',
-    confirm: '$colors$valid20',
+    confirm: '$colors$valid20'
   },
 
   borderColors: {
@@ -65,20 +66,20 @@ export const themeColorTokens = {
     hover: '$colors$dark25',
     focus: '$colors$dark60',
     selected: '$colors$dark30',
-    error: '$colors$error60',
-  },
+    error: '$colors$error60'
+  }
 }
 
 /* light theme palette */
 export const lightThemeColorPalette = createColorPalette(lightThemeColors)
 export const lightThemeColorTokens = {
   colors: lightThemeColorPalette,
-  ...themeColorTokens,
+  ...themeColorTokens
 }
 
 /* dark theme palette */
 export const darkThemeColorPalette = createColorPalette(darkThemeColors)
 export const darkThemeColorTokens = {
   colors: darkThemeColorPalette,
-  ...themeColorTokens,
+  ...themeColorTokens
 }
