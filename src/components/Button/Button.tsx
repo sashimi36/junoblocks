@@ -9,7 +9,7 @@ import {
 } from 'react'
 import { createColorVariants, styled } from 'theme'
 
-import { GetRenderAsProps, RenderAsType } from './types'
+import { GetRenderAsProps, RenderAsType } from '../types'
 
 const StyledButton = styled('button', {
   $$textColor: '$textColors$primary',

@@ -10,14 +10,14 @@ type SegmentedControlProps = {
 export const SegmentedControl = ({
   activeValue,
   values,
-  onChange,
+  onChange
 }: SegmentedControlProps) => {
   return (
     <Inline>
       {values.map((element) => (
         <Button
           key={element.value}
-          variant="ghost"
+          variant='ghost'
           selected={element.value === activeValue}
           onClick={(event) => onChange(element, event)}
           css={{ flex: 1 }}

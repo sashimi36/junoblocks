@@ -1,4 +1,4 @@
-export * from './Button'
+export * from './Button/Button'
 export * from './ButtonWithDropdown'
 export * from './Card'
 export * from './Column'
