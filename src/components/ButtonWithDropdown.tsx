@@ -25,7 +25,7 @@ export const ButtonWithDropdown = ({ dropdown, ...buttonProps }: Props) => {
 
       setPosition({
         left: clientRect.left,
-        top: clientRect.top + clientRect.height + window.pageYOffset,
+        top: clientRect.top + clientRect.height + window.pageYOffset
       })
 
       setDropdownShowing(true)
@@ -45,7 +45,7 @@ export const ButtonWithDropdown = ({ dropdown, ...buttonProps }: Props) => {
     <>
       <Button
         ref={buttonRef}
-        variant="ghost"
+        variant='ghost'
         selected={dropdownShowing}
         dropdownVisible={dropdownShowing}
         onClick={(event) => {
@@ -71,11 +71,11 @@ const StyledDivForDropdownWrapper = styled('div', {
   left: 0,
   top: 0,
   zIndex: 99,
-  borderRadius: '0px $2 $2 $2',
+  borderRadius: '0px $2 $2 $2'
 })
 
 const StyledDivForDropdown = styled('div', {
   backgroundColor: '$colors$dark5',
   borderRadius: '0px $2 $2 $2',
-  boxShadow: '0px 6px 8px rgba(25, 29, 32, 0.1)',
+  boxShadow: '0px 6px 8px rgba(25, 29, 32, 0.1)'
 })
