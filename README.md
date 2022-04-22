@@ -50,32 +50,45 @@ yarn storybook
 
 ## Dev mode
 
-Dev mode is for parallel development purposes on both your app and junoblocks sides. It will automatically reload the page when you change the code.
+This is for parallel development for your app and junoblocks. It will automatically reload the page when you change the code in your local clone of the repo.
 
-Currently, the dev mode is only available for the nextjs apps. You'll need to install an additional plugin for nextjs and clone this repo to the same root directory of your app.
+Currently, the dev mode is only available for the nextjs apps. You'll need to install a plugin for nextjs and clone this repo to the same root directory of your app.
 
-Follow these 3 simple steps to get started:
+To get started, run this in your nextjs app folder:
 
 ```bash
 yarn add next-bundle-junoblocks
 ```
 
-In your `next.config.js` file, add the following:
+In `next.config.js`, add the following:
 ```js 
 // next.config.js
 const withBundleJunoblocks = require('next-bundle-junoblocks')
 
 const config = {} // nextjs config
 
-module.exports = process.env.BUILD_JUNOBLOCKS === 'true' ? 
-    withBundleJunoblocks(config) : config
-```
-Clone the repo and run `yarn install` to build the library.
-```bash
-git clone https://github.com/sashimi36/junoblocks
+module.exports =
+    process.env.BUILD_JUNOBLOCKS === 'true' ? 
+        withBundleJunoblocks(config) : config
 ```
 
-Run `yarn dev` to start the dev bundler. Run `BUILD_JUNOBLOCKS=true yarn dev` to start your dev server.
+Clone the repo in the same root directory of your nextjs app and run `yarn install`.
+
+Here's how your file tree should look like:
+```
+└── your_project
+└────── package.json
+└────── index.js
+└────── ...
+└── junoblocks
+└────── package.json
+└────── index.js
+└────── ...
+```
+
+Once modules are installed:
+- Run `yarn dev` to start the dev bundler in junoblocks folder.
+- Run `BUILD_JUNOBLOCKS=true yarn dev` to start a dev server in your nextjs app.
 
 Done! Now junoblocks will be bundled up together with your nextjs app supporting fast reload.
 
