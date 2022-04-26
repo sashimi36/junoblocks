@@ -128,7 +128,7 @@ const studio: FontVariantKind = {
 
 const symbol: FontVariantKind = {
   hero: {
-    size: 'clamp(8rem, 11.5vw, 13.5rem)',
+    size: 'clamp(8rem, 10.5vw, 13.5rem)',
     height: 'clamp(9.25rem, 14vw, 16.5rem)',
     weight: 700,
     color: 'primary',
