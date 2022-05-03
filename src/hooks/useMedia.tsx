@@ -10,9 +10,11 @@ import { lightTheme } from 'theme'
 type MediaQueryType = keyof typeof lightTheme.media
 
 export const useMedia = (value: MediaQueryType) => {
-  const [matches, setMatches] = useState<boolean>(
-    () => window.matchMedia(lightTheme.media[value].value).matches
-  )
+  const [matches, setMatches] = useState<boolean>(() => {
+    return typeof window !== 'undefined'
+      ? window.matchMedia(lightTheme.media[value].value).matches
+      : false
+  })
 
   useEffect(() => {
     const updateIsMatching = () =>
@@ -36,7 +38,7 @@ const MediaContext = createContext<MediaQueryType | undefined>(undefined)
 
 export const MediaController = ({
   children,
-  media,
+  media
 }: {
   children: ReactNode
   media: MediaQueryType
