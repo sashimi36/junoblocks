@@ -306,15 +306,15 @@ export type ButtonProps<T extends RenderAsType = 'button'> = Omit<
 > & { as?: T; css?: CSS } & (
     | {
         children?: ReactNode
-        iconLeft?: ReactElement
-        iconRight?: ReactElement
+        iconLeft?: ReactElement | false | null | undefined
+        iconRight?: ReactElement | false | null | undefined
         icon?: never
       }
     | {
         children?: never
         iconLeft?: never
         iconRight?: never
-        icon?: ReactElement
+        icon?: ReactElement | false | null | undefined
       }
   )
 

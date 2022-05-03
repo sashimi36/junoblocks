@@ -48,7 +48,7 @@ export const createBalanceFormatter = ({
     maximumFractionDigits,
     ...options,
     style: 'currency',
-    currency: 'USD',
+    currency: 'USD'
   })
 
   return (
@@ -74,9 +74,13 @@ export const formatTokenBalance = createBalanceFormatter()
 
 export const dollarValueFormatterWithDecimals = createBalanceFormatter({
   maximumFractionDigits: 2,
-  minimumFractionDigits: 2,
+  minimumFractionDigits: 2
 })
 
 export const dollarValueFormatter = createBalanceFormatter({
-  maximumFractionDigits: 2,
+  maximumFractionDigits: 2
+})
+
+export const compactNumberFormatter = Intl.NumberFormat('en', {
+  notation: 'compact'
 })
