@@ -99,3 +99,4 @@ Please submit your suggestions, feature requests or bugs reports to the [GitHub 
 ## License
 
 MIT © [sashimi36](https://github.com/sashimi36)
+
