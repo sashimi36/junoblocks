@@ -36,6 +36,7 @@
     "@rollup/plugin-commonjs": "^21.1.0",
     "@rollup/plugin-node-resolve": "^13.2.0",
     "@stitches/react": "^1.2.8",
+    "@storybook/addon-a11y": "^6.4.22",
     "@storybook/addon-actions": "^6.4.22",
     "@storybook/addon-controls": "^6.4.22",
     "@storybook/addon-essentials": "^6.4.22",
