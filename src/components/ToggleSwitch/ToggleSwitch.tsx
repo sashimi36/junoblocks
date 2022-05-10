@@ -1,6 +1,6 @@
-import { styled } from '../theme'
+import { styled } from '../../theme'
 
-type ToggleSwitchProps = {
+export type ToggleSwitchProps = {
   id: string
   name: string
   checked: boolean
@@ -15,12 +15,12 @@ export const ToggleSwitch = ({
   checked,
   onChange,
   optionLabels,
-  disabled,
+  disabled
 }: ToggleSwitchProps) => {
   return (
     <StyledDivForWrapper checked={checked}>
       <StyledInputForCheckbox
-        type="checkbox"
+        type='checkbox'
         name={name}
         id={id}
         checked={checked}
@@ -51,10 +51,10 @@ const StyledSpanForCircle = styled('span', {
   variants: {
     checked: {
       true: {
-        transform: 'translateX(0.5rem)',
-      },
-    },
-  },
+        transform: 'translateX(0.5rem)'
+      }
+    }
+  }
 })
 
 const StyledDivForWrapper = styled('div', {
@@ -99,7 +99,7 @@ const StyledDivForWrapper = styled('div', {
   boxShadow: '0 0 0 $$activeBorderSize $$activeBorderColor',
 
   [`& ${StyledSpanForCircle}`]: {
-    backgroundColor: '$$activeCircleColor',
+    backgroundColor: '$$activeCircleColor'
   },
 
   /* set up colors & params dynamic states */
@@ -107,21 +107,21 @@ const StyledDivForWrapper = styled('div', {
     $$activeBorderColor: '$$borderColorOnHover',
     $$activeCircleColor: '$$circleColorOnHover',
     $$activeBackgroundColor: '$$backgroundColorOnHover',
-    $$activeBorderSize: '$$borderSizeOnHover',
+    $$activeBorderSize: '$$borderSizeOnHover'
   },
 
   '&:focus': {
     $$activeBorderColor: '$$borderColorOnFocus',
     $$activeCircleColor: '$$circleColorOnFocus',
     $$activeBackgroundColor: '$$backgroundColorOnFocus',
-    $$activeBorderSize: '$$borderSizeOnFocus',
+    $$activeBorderSize: '$$borderSizeOnFocus'
   },
 
   '&:active': {
     $$activeBorderColor: '$$borderColorOnActive',
     $$activeCircleColor: '$$circleColorOnActive',
     $$activeBackgroundColor: '$$backgroundColorOnActive',
-    $$activeBorderSize: '$$borderSizeOnActive',
+    $$activeBorderSize: '$$borderSizeOnActive'
   },
 
   variants: {
@@ -146,11 +146,11 @@ const StyledDivForWrapper = styled('div', {
         $$borderSize: '1px',
         $$borderSizeOnHover: '$$borderSize',
         $$borderSizeOnActive: '$$borderSize',
-        $$borderSizeOnFocus: '2px',
+        $$borderSizeOnFocus: '2px'
       },
-      false: {},
-    },
-  },
+      false: {}
+    }
+  }
 })
 
 const StyledInputForCheckbox = styled('input', {
@@ -162,11 +162,11 @@ const StyledInputForCheckbox = styled('input', {
   zIndex: '$2',
   inset: 0,
   cursor: 'pointer',
-  userSelect: 'none',
+  userSelect: 'none'
 })
 
 const StyledLabelForContainer = styled('label', {
   display: 'flex',
   position: 'relative',
-  zIndex: '$1',
+  zIndex: '$1'
 })
