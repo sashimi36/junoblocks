@@ -15,6 +15,7 @@ module.exports = {
     '@storybook/preset-scss',
     '@storybook/addon-controls',
     '@storybook/addon-links',
-    '@storybook/addon-essentials'
+    '@storybook/addon-essentials',
+    '@storybook/addon-a11y'
   ]
 }
