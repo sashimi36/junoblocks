@@ -13,8 +13,8 @@ export default {
       <div style={{ margin: '0px 108px' }}>
         <Story />
       </div>
-    )
-  ]
+    ),
+  ],
 } as ComponentMeta<typeof Card>
 
 const CONTENT =
@@ -22,36 +22,40 @@ const CONTENT =
 
 export const Overview = () => (
   <Column gap={8}>
-    <Text kind='studio' variant='title'>
+    <Text kind="studio" variant="title">
       Overview
     </Text>
-    <Text variant='header'>Ghost</Text>
-    <Card style={{ marginBottom: 16, padding: 24 }} variant='ghost'>
-      <CardContent size='small' style={{ justifyContent: 'center' }}>
+    <Text variant="header">Ghost</Text>
+    <Card css={{ marginBottom: '$8', padding: '$12' }} variant="ghost">
+      <CardContent size="small" css={{ justifyContent: 'center' }}>
         {CONTENT}
       </CardContent>
     </Card>
-    <Text variant='header'>Primary</Text>
-    <Card style={{ marginBottom: 16, padding: 24 }}>
-      <CardContent size='small' style={{ justifyContent: 'center' }}>
+    <Text variant="header">Primary</Text>
+    <Card css={{ marginBottom: '$8', padding: '$12' }}>
+      <CardContent size="small" css={{ justifyContent: 'center' }}>
         {CONTENT}
       </CardContent>
     </Card>
-    <Text variant='header'>Secondary</Text>
-    <Card style={{ marginBottom: 24, padding: 24 }} variant='secondary'>
-      <CardContent size='small' style={{ justifyContent: 'center' }}>
+    <Text variant="header">Secondary</Text>
+    <Card css={{ marginBottom: '$8', padding: '$12' }} variant="secondary">
+      <CardContent size="small" css={{ justifyContent: 'center' }}>
         {CONTENT}
       </CardContent>
     </Card>
-    <Text variant='header'>Secondary active</Text>
-    <Card active style={{ marginBottom: 16, padding: 24 }} variant='secondary'>
-      <CardContent size='small' style={{ justifyContent: 'center' }}>
+    <Text variant="header">Secondary active</Text>
+    <Card
+      active
+      css={{ marginBottom: '$8', padding: '$12' }}
+      variant="secondary"
+    >
+      <CardContent size="small" css={{ justifyContent: 'center' }}>
         {CONTENT}
       </CardContent>
     </Card>
-    <Text variant='header'>Secondary disabled</Text>
-    <Card disabled style={{ padding: 24 }} variant='secondary'>
-      <CardContent size='small' style={{ justifyContent: 'center' }}>
+    <Text variant="header">Secondary disabled</Text>
+    <Card disabled css={{ padding: '$12' }} variant="secondary">
+      <CardContent size="small" css={{ justifyContent: 'center' }}>
         {CONTENT}
       </CardContent>
     </Card>
@@ -62,11 +66,11 @@ export const Playground: ComponentStory<typeof Card> = (
   args: Omit<ComponentPropsWithoutRef<typeof StyledDivForCardWrapper>, 'key'>
 ) => (
   <div>
-    <Text kind='studio' variant='title'>
+    <Text kind="studio" variant="title">
       Playground
     </Text>
     <Card {...args}>
-      <CardContent size='small' style={{ justifyContent: 'center' }}>
+      <CardContent size="small" css={{ justifyContent: 'center' }}>
         {CONTENT}
       </CardContent>
     </Card>
@@ -76,7 +80,7 @@ export const Playground: ComponentStory<typeof Card> = (
 Playground.bind({})
 Playground.args = {
   active: false,
-  css: { marginTop: 16, padding: 24 },
+  css: { marginTop: '$8', padding: '$12' },
   disabled: false,
-  variant: 'secondary'
+  variant: 'secondary',
 }
