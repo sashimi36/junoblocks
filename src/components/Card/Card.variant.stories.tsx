@@ -12,8 +12,8 @@ export default {
       <div style={{ margin: '0px 108px' }}>
         <Story />
       </div>
-    )
-  ]
+    ),
+  ],
 }
 
 const CONTENT =
@@ -21,11 +21,11 @@ const CONTENT =
 
 export const Ghost = () => (
   <div>
-    <Text kind='studio' variant='title'>
+    <Text kind="studio" variant="title">
       Ghost
     </Text>
-    <Card style={{ marginTop: 16, padding: 24 }} variant='ghost'>
-      <CardContent size='small' style={{ justifyContent: 'center' }}>
+    <Card css={{ marginTop: '$8', padding: '$12' }} variant="ghost">
+      <CardContent size="small" css={{ justifyContent: 'center' }}>
         {CONTENT}
       </CardContent>
     </Card>
@@ -34,11 +34,11 @@ export const Ghost = () => (
 
 export const Primary = () => (
   <div>
-    <Text kind='studio' variant='title'>
+    <Text kind="studio" variant="title">
       Primary
     </Text>
-    <Card style={{ marginTop: 16, padding: 24 }}>
-      <CardContent size='small' style={{ justifyContent: 'center' }}>
+    <Card css={{ marginTop: '$8', padding: '$12' }}>
+      <CardContent size="small" css={{ justifyContent: 'center' }}>
         {CONTENT}
       </CardContent>
     </Card>
@@ -47,11 +47,11 @@ export const Primary = () => (
 
 export const Secondary = () => (
   <div>
-    <Text kind='studio' variant='title'>
+    <Text kind="studio" variant="title">
       Secondary
     </Text>
-    <Card style={{ marginTop: 16, padding: 24 }} variant='secondary'>
-      <CardContent size='small' style={{ justifyContent: 'center' }}>
+    <Card css={{ marginTop: '$8', padding: '$12' }} variant="secondary">
+      <CardContent size="small" css={{ justifyContent: 'center' }}>
         {CONTENT}
       </CardContent>
     </Card>
@@ -60,24 +60,28 @@ export const Secondary = () => (
 
 export const Active = () => (
   <Column gap={8}>
-    <Text kind='studio' variant='title'>
+    <Text kind="studio" variant="title">
       Active
     </Text>
-    <Text variant='header'>Ghost</Text>
-    <Card active style={{ marginBottom: 16, padding: 24 }} variant='ghost'>
-      <CardContent size='small' style={{ justifyContent: 'center' }}>
+    <Text variant="header">Ghost</Text>
+    <Card active css={{ marginBottom: '$8', padding: '$12' }} variant="ghost">
+      <CardContent size="small" css={{ justifyContent: 'center' }}>
         {CONTENT}
       </CardContent>
     </Card>
-    <Text variant='header'>Primary</Text>
-    <Card active style={{ marginBottom: 16, padding: 24 }}>
-      <CardContent size='small' style={{ justifyContent: 'center' }}>
+    <Text variant="header">Primary</Text>
+    <Card active css={{ marginBottom: '$8', padding: '$12' }}>
+      <CardContent size="small" css={{ justifyContent: 'center' }}>
         {CONTENT}
       </CardContent>
     </Card>
-    <Text variant='header'>Secondary</Text>
-    <Card active style={{ marginBottom: 16, padding: 24 }} variant='secondary'>
-      <CardContent size='small' style={{ justifyContent: 'center' }}>
+    <Text variant="header">Secondary</Text>
+    <Card
+      active
+      css={{ marginBottom: '$8', padding: '$12' }}
+      variant="secondary"
+    >
+      <CardContent size="small" css={{ justifyContent: 'center' }}>
         {CONTENT}
       </CardContent>
     </Card>
@@ -86,24 +90,24 @@ export const Active = () => (
 
 export const Disabled = () => (
   <Column gap={8}>
-    <Text kind='studio' variant='title'>
+    <Text kind="studio" variant="title">
       Disabled
     </Text>
-    <Text variant='header'>Ghost</Text>
-    <Card disabled style={{ marginBottom: 16, padding: 24 }} variant='ghost'>
-      <CardContent size='small' style={{ justifyContent: 'center' }}>
+    <Text variant="header">Ghost</Text>
+    <Card disabled css={{ marginBottom: '$8', padding: '$12' }} variant="ghost">
+      <CardContent size="small" css={{ justifyContent: 'center' }}>
         {CONTENT}
       </CardContent>
     </Card>
-    <Text variant='header'>Primary</Text>
-    <Card disabled style={{ marginBottom: 16, padding: 24 }}>
-      <CardContent size='small' style={{ justifyContent: 'center' }}>
+    <Text variant="header">Primary</Text>
+    <Card disabled css={{ marginBottom: '$8', padding: '$12' }}>
+      <CardContent size="small" css={{ justifyContent: 'center' }}>
         {CONTENT}
       </CardContent>
     </Card>
-    <Text variant='header'>Secondary</Text>
-    <Card disabled style={{ padding: 24 }} variant='secondary'>
-      <CardContent size='small' style={{ justifyContent: 'center' }}>
+    <Text variant="header">Secondary</Text>
+    <Card disabled css={{ padding: '$12' }} variant="secondary">
+      <CardContent size="small" css={{ justifyContent: 'center' }}>
         {CONTENT}
       </CardContent>
     </Card>

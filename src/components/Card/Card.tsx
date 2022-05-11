@@ -17,16 +17,16 @@ export const StyledDivForCardWrapper = styled('div', {
   backgroundColor: '$$backgroundColor',
 
   '&:hover': {
-    $$backgroundColor: '$$backgroundColorOnHover'
+    $$backgroundColor: '$$backgroundColorOnHover',
   },
 
   '&:active': {
-    $$backgroundColor: '$$backgroundColorOnActive'
+    $$backgroundColor: '$$backgroundColorOnActive',
   },
 
   boxShadow: '0 0 0 0 $$boxShadowColor',
   '&:focus': {
-    boxShadow: '0 0 0 2px $$boxShadowColorOnFocus'
+    boxShadow: '0 0 0 2px $$boxShadowColorOnFocus',
   },
 
   variants: {
@@ -40,25 +40,25 @@ export const StyledDivForCardWrapper = styled('div', {
           '0px 2px 6px $$boxShadowColor, 0 0 0 $$borderSize $$borderColor',
 
         '&:hover': {
-          $$borderColor: '$borderColors$hover'
+          $$borderColor: '$borderColors$hover',
         },
 
         '&:active': {
           $$borderSize: '2px',
           $$borderColor: '$borderColors$default',
-          $$boxShadowColor: '$colors$black0'
+          $$boxShadowColor: '$colors$black0',
         },
 
         '&:focus': {
           $$borderSize: '1px',
           $$borderColor: '$borderColors$default',
-          $$boxShadowColor: '$colors$black10'
-        }
+          $$boxShadowColor: '$colors$black10',
+        },
       },
       secondary: {
         $$backgroundColor: '$colors$dark10',
         $$backgroundColorOnHover: '$colors$dark15',
-        $$backgroundColorOnActive: '$colors$dark5'
+        $$backgroundColorOnActive: '$colors$dark5',
       },
       ghost: {
         cursor: 'auto',
@@ -67,20 +67,20 @@ export const StyledDivForCardWrapper = styled('div', {
         $$backgroundColorOnHover: '$$backgroundColor',
         $$backgroundColorOnActive: '$$backgroundColor',
         '&:focus': {
-          boxShadow: '0 0 0 0 $colors$dark0'
-        }
-      }
+          boxShadow: '0 0 0 0 $colors$dark0',
+        },
+      },
     },
 
     active: {
-      true: {}
+      true: {},
     },
 
     disabled: {
       true: {
-        $$boxShadowColorOnFocus: '$colors$dark0'
-      }
-    }
+        $$boxShadowColorOnFocus: '$colors$dark0',
+      },
+    },
   },
 
   compoundVariants: [
@@ -90,8 +90,8 @@ export const StyledDivForCardWrapper = styled('div', {
       css: {
         $$backgroundColor: '$colors$dark5',
         $$backgroundColorOnHover: '$colors$dark5',
-        $$backgroundColorOnActive: '$colors$dark5'
-      }
+        $$backgroundColorOnActive: '$colors$dark5',
+      },
     },
     {
       active: true,
@@ -99,8 +99,8 @@ export const StyledDivForCardWrapper = styled('div', {
       css: {
         $$backgroundColor: '$colors$brand20',
         $$backgroundColorOnHover: '$colors$brand30',
-        $$backgroundColorOnActive: '$colors$brand10'
-      }
+        $$backgroundColorOnActive: '$colors$brand10',
+      },
     },
     {
       active: true,
@@ -109,13 +109,13 @@ export const StyledDivForCardWrapper = styled('div', {
       css: {
         $$backgroundColor: '$colors$brand10',
         $$backgroundColorOnHover: '$colors$brand10',
-        $$backgroundColorOnActive: '$colors$brand10'
-      }
-    }
+        $$backgroundColorOnActive: '$colors$brand10',
+      },
+    },
   ],
   defaultVariants: {
-    variant: 'primary'
-  }
+    variant: 'primary',
+  },
 })
 
 const CardComponent = (
@@ -126,7 +126,7 @@ const CardComponent = (
   ref: ForwardedRef<any>
 ) => {
   return (
-    <StyledDivForCardWrapper {...props} ref={ref} role='button' tabIndex={-1}>
+    <StyledDivForCardWrapper {...props} ref={ref} role="button" tabIndex={-1}>
       {children}
     </StyledDivForCardWrapper>
   )
@@ -141,21 +141,21 @@ export const CardContent = styled('div', {
       medium: {
         padding: '0 $12',
         [media.sm]: {
-          padding: '0 $8'
-        }
+          padding: '0 $8',
+        },
       },
       small: {
-        padding: '0 $8'
+        padding: '0 $8',
       },
       large: {
         padding: '0 $16',
         [media.sm]: {
-          padding: '0 $12'
-        }
-      }
-    }
+          padding: '0 $12',
+        },
+      },
+    },
   },
   defaultVariants: {
-    size: 'large'
-  }
+    size: 'large',
+  },
 })
