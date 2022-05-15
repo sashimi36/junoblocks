@@ -1,9 +1,9 @@
 import React, { ComponentPropsWithoutRef, Fragment } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import { Card, CardContent, StyledDivForCardWrapper } from './Card'
-import { Column } from '../Column'
-import { Text } from '../Text'
+import { Card, CardContent, StyledDivForCardWrapper } from '../Card'
+import { Column } from '../../Column'
+import { Text } from '../../Text'
 
 export default {
   title: 'Components / Card',

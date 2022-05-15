@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react'
 import { styled } from 'theme'
 
-import { Card, CardContent } from './Card'
-import { Column } from '../Column'
-import { Divider } from '../Divider'
-import { Text } from '../Text'
+import { Card, CardContent } from '../Card'
+import { Column } from '../../Column'
+import { Divider } from '../../Divider'
+import { Text } from '../../Text'
 
 export default {
   title: 'Components / Card / Variants',
