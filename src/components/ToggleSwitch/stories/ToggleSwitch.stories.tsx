@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import { ToggleSwitch, ToggleSwitchProps } from './ToggleSwitch'
+import { ToggleSwitch, ToggleSwitchProps } from '../ToggleSwitch'
 
 export default {
   title: 'Components / ToggleSwitch',
-  component: ToggleSwitch
+  component: ToggleSwitch,
 } as ComponentMeta<typeof ToggleSwitch>
 
 export const Overview = () => {
@@ -14,8 +14,8 @@ export const Overview = () => {
   return (
     <ToggleSwitch
       checked={checked}
-      id='overview-toggle'
-      name='switch'
+      id="overview-toggle"
+      name="switch"
       onChange={setChecked}
       optionLabels={['On', 'Off']}
     />
@@ -25,8 +25,8 @@ export const Overview = () => {
 export const Disabled = () => (
   <ToggleSwitch
     disabled
-    id='disabled-toggle'
-    name='switch'
+    id="disabled-toggle"
+    name="switch"
     optionLabels={['On', 'Off']}
   />
 )
@@ -41,5 +41,5 @@ Playground.args = {
   disabled: false,
   id: 'playground-toggle',
   name: 'switch',
-  optionLabels: ['On', 'Off']
+  optionLabels: ['On', 'Off'],
 }
