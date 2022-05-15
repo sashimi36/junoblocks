@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import { styled } from 'theme'
 
 import { Card, CardContent } from './Card'
 import { Column } from '../Column'
+import { Divider } from '../Divider'
 import { Text } from '../Text'
 
 export default {
@@ -16,8 +18,36 @@ export default {
   ],
 }
 
-const CONTENT =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+const Grid = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, 1fr)',
+  columnGap: '$8',
+})
+
+const DividedContent = () => (
+  <Fragment>
+    <CardContent>
+      <Text color="body" css={{ padding: '$16 0' }} variant="legend">
+        Your liquidity
+      </Text>
+    </CardContent>
+    <Divider offsetTop="$8" />
+    <CardContent>
+      <Text color="body" css={{ padding: '$16 0 $24' }} variant="legend">
+        Underlying assets
+      </Text>
+    </CardContent>
+  </Fragment>
+)
+
+const VariantContent = () => (
+  <CardContent size="small" css={{ justifyContent: 'center' }}>
+    <Text variant="body">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua.
+    </Text>
+  </CardContent>
+)
 
 export const Ghost = () => (
   <div>
@@ -25,9 +55,7 @@ export const Ghost = () => (
       Ghost
     </Text>
     <Card css={{ marginTop: '$8', padding: '$12' }} variant="ghost">
-      <CardContent size="small" css={{ justifyContent: 'center' }}>
-        {CONTENT}
-      </CardContent>
+      <VariantContent />
     </Card>
   </div>
 )
@@ -38,9 +66,7 @@ export const Primary = () => (
       Primary
     </Text>
     <Card css={{ marginTop: '$8', padding: '$12' }}>
-      <CardContent size="small" css={{ justifyContent: 'center' }}>
-        {CONTENT}
-      </CardContent>
+      <VariantContent />
     </Card>
   </div>
 )
@@ -51,9 +77,7 @@ export const Secondary = () => (
       Secondary
     </Text>
     <Card css={{ marginTop: '$8', padding: '$12' }} variant="secondary">
-      <CardContent size="small" css={{ justifyContent: 'center' }}>
-        {CONTENT}
-      </CardContent>
+      <VariantContent />
     </Card>
   </div>
 )
@@ -65,15 +89,11 @@ export const Active = () => (
     </Text>
     <Text variant="header">Ghost</Text>
     <Card active css={{ marginBottom: '$8', padding: '$12' }} variant="ghost">
-      <CardContent size="small" css={{ justifyContent: 'center' }}>
-        {CONTENT}
-      </CardContent>
+      <VariantContent />
     </Card>
     <Text variant="header">Primary</Text>
     <Card active css={{ marginBottom: '$8', padding: '$12' }}>
-      <CardContent size="small" css={{ justifyContent: 'center' }}>
-        {CONTENT}
-      </CardContent>
+      <VariantContent />
     </Card>
     <Text variant="header">Secondary</Text>
     <Card
@@ -81,9 +101,7 @@ export const Active = () => (
       css={{ marginBottom: '$8', padding: '$12' }}
       variant="secondary"
     >
-      <CardContent size="small" css={{ justifyContent: 'center' }}>
-        {CONTENT}
-      </CardContent>
+      <VariantContent />
     </Card>
   </Column>
 )
@@ -95,21 +113,34 @@ export const Disabled = () => (
     </Text>
     <Text variant="header">Ghost</Text>
     <Card disabled css={{ marginBottom: '$8', padding: '$12' }} variant="ghost">
-      <CardContent size="small" css={{ justifyContent: 'center' }}>
-        {CONTENT}
-      </CardContent>
+      <VariantContent />
     </Card>
     <Text variant="header">Primary</Text>
     <Card disabled css={{ marginBottom: '$8', padding: '$12' }}>
-      <CardContent size="small" css={{ justifyContent: 'center' }}>
-        {CONTENT}
-      </CardContent>
+      <VariantContent />
     </Card>
     <Text variant="header">Secondary</Text>
     <Card disabled css={{ padding: '$12' }} variant="secondary">
-      <CardContent size="small" css={{ justifyContent: 'center' }}>
-        {CONTENT}
-      </CardContent>
+      <VariantContent />
     </Card>
   </Column>
+)
+
+export const WithDivider = () => (
+  <div>
+    <Text kind="studio" variant="title">
+      With a divider
+    </Text>
+    <Grid>
+      <Card css={{ marginTop: '$8' }}>
+        <DividedContent />
+      </Card>
+      <Card css={{ marginTop: '$8' }} variant="secondary">
+        <DividedContent />
+      </Card>
+      <Card active css={{ marginTop: '$8' }} variant="secondary">
+        <DividedContent />
+      </Card>
+    </Grid>
+  </div>
 )
