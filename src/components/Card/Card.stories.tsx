@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef } from 'react'
+import React, { ComponentPropsWithoutRef, Fragment } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import { Card, CardContent, StyledDivForCardWrapper } from './Card'
@@ -17,8 +17,14 @@ export default {
   ],
 } as ComponentMeta<typeof Card>
 
-const CONTENT =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+const VariantContent = () => (
+  <CardContent size="small" css={{ justifyContent: 'center' }}>
+    <Text variant="body">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua.
+    </Text>
+  </CardContent>
+)
 
 export const Overview = () => (
   <Column gap={8}>
@@ -27,21 +33,15 @@ export const Overview = () => (
     </Text>
     <Text variant="header">Ghost</Text>
     <Card css={{ marginBottom: '$8', padding: '$12' }} variant="ghost">
-      <CardContent size="small" css={{ justifyContent: 'center' }}>
-        {CONTENT}
-      </CardContent>
+      <VariantContent />
     </Card>
     <Text variant="header">Primary</Text>
     <Card css={{ marginBottom: '$8', padding: '$12' }}>
-      <CardContent size="small" css={{ justifyContent: 'center' }}>
-        {CONTENT}
-      </CardContent>
+      <VariantContent />
     </Card>
     <Text variant="header">Secondary</Text>
     <Card css={{ marginBottom: '$8', padding: '$12' }} variant="secondary">
-      <CardContent size="small" css={{ justifyContent: 'center' }}>
-        {CONTENT}
-      </CardContent>
+      <VariantContent />
     </Card>
     <Text variant="header">Secondary active</Text>
     <Card
@@ -49,15 +49,11 @@ export const Overview = () => (
       css={{ marginBottom: '$8', padding: '$12' }}
       variant="secondary"
     >
-      <CardContent size="small" css={{ justifyContent: 'center' }}>
-        {CONTENT}
-      </CardContent>
+      <VariantContent />
     </Card>
     <Text variant="header">Secondary disabled</Text>
     <Card disabled css={{ padding: '$12' }} variant="secondary">
-      <CardContent size="small" css={{ justifyContent: 'center' }}>
-        {CONTENT}
-      </CardContent>
+      <VariantContent />
     </Card>
   </Column>
 )
@@ -70,9 +66,7 @@ export const Playground: ComponentStory<typeof Card> = (
       Playground
     </Text>
     <Card {...args}>
-      <CardContent size="small" css={{ justifyContent: 'center' }}>
-        {CONTENT}
-      </CardContent>
+      <VariantContent />
     </Card>
   </div>
 )
