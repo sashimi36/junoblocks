@@ -1,8 +1,8 @@
 import { ComponentPropsWithoutRef, ForwardedRef, forwardRef } from 'react'
 
-import { media, styled } from '../theme'
+import { media, styled } from 'theme'
 
-const StyledDivForCardWrapper = styled('div', {
+export const StyledDivForCardWrapper = styled('div', {
   $$backgroundColor: '$colors$white',
   $$backgroundColorOnHover: '$colors$white',
   $$backgroundColorOnActive: '$colors$white',

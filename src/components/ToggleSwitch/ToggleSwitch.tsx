@@ -1,6 +1,6 @@
-import { styled } from '../theme'
+import { styled } from 'theme'
 
-type ToggleSwitchProps = {
+export type ToggleSwitchProps = {
   id: string
   name: string
   checked: boolean
