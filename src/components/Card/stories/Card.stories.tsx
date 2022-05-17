@@ -20,8 +20,8 @@ export default {
 const VariantContent = () => (
   <CardContent size="small" css={{ justifyContent: 'center' }}>
     <Text variant="body">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua.
+      the city dumps fill. the junkyards fill. the madhouses fill. the hospitals
+      fill. the graveyards fill. nothing else fills.
     </Text>
   </CardContent>
 )
