@@ -13,7 +13,7 @@
     "build": "rimraf dist && tsc && rollup --config",
     "tsc": "tsc",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build:storybook": "build-storybook -o ./build"
   },
   "files": [
     "dist",
