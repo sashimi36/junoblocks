@@ -1,7 +1,7 @@
 import React, { ComponentPropsWithoutRef, Fragment } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import { Card, CardContent, StyledDivForCardWrapper } from '../Card'
+import { Card, CardContent, CardProps } from '../Card'
 import { Column } from '../../Column'
 import { Text } from '../../Text'
 
@@ -58,9 +58,7 @@ export const Overview = () => (
   </Column>
 )
 
-export const Playground: ComponentStory<typeof Card> = (
-  args: Omit<ComponentPropsWithoutRef<typeof StyledDivForCardWrapper>, 'key'>
-) => (
+export const Playground: ComponentStory<typeof Card> = (args: CardProps) => (
   <div>
     <Text kind="studio" variant="title">
       Playground
