@@ -1,7 +1,7 @@
 import { useDelayedAppearanceFlag } from 'hooks/useDelayedAppearanceFlag'
 import React, { ComponentPropsWithoutRef } from 'react'
 
-import { keyframes, styled, createColorVariants } from '../theme'
+import { keyframes, styled, createColorVariants } from '../../theme'
 
 const spin = keyframes({
   '0%': { transform: 'rotate(0deg)' },
@@ -35,7 +35,9 @@ const StyledSvgForSpinner = styled('svg', {
   }
 })
 
-type SpinnerProps = ComponentPropsWithoutRef<typeof StyledSvgForSpinner> & {
+export type SpinnerProps = ComponentPropsWithoutRef<
+  typeof StyledSvgForSpinner
+> & {
   isLoading?: boolean
   size?: number
   instant?: boolean
