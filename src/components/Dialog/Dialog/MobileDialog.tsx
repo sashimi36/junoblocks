@@ -81,7 +81,7 @@ export const MobileDialog = ({
             ref={modalRef}
             {...props}
           >
-            {children}
+            <StyledDivForScrollArea>{children}</StyledDivForScrollArea>
           </StyledDivForModal>
         </DialogContextProvider>
       )}
@@ -96,7 +96,10 @@ const StyledDivForModal = styled('div', {
   height: '100%',
   minHeight: '100vh',
   position: 'fixed',
+  overflowY: 'auto',
   left: 0,
   top: 0,
   opacity: 0
 })
+
+const StyledDivForScrollArea = styled('div', {})
