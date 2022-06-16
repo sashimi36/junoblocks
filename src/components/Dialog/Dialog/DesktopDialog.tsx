@@ -1,39 +1,36 @@
 import gsap from 'gsap'
 import Portal from '@reach/portal'
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
-import { ReactNode, useEffect, useRef, useState } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 import { styled, useThemeClassName } from 'theme'
 
-import { DialogContextProvider } from './DialogContext'
+import { DialogContextProvider } from '../DialogContext'
+import { useLockScroll } from './hooks/useLockScroll'
+import { useDeferredDialogIsShowing } from './hooks/useDeferredDialogIsShowing'
 
-type DialogProps = {
+export type DesktopDialogProps = {
   children?: ReactNode
   isShowing: boolean
   onRequestClose: () => void
 }
 
-export const Dialog = ({
+export const DesktopDialog = ({
   children,
   isShowing,
   onRequestClose,
   ...props
-}: DialogProps) => {
-  const [isRenderingDialog, setIsRenderingDialog] = useState(false)
+}: DesktopDialogProps) => {
+  const [isRenderingDialog, setIsRenderingDialog] = useDeferredDialogIsShowing({
+    isShowing
+  })
+
   const themeClassName = useThemeClassName()
 
   const modalRef = useRef<HTMLDivElement>()
   const overlayRef = useRef<HTMLDivElement>()
 
-  // render the dialog
-  useEffect(() => {
-    if (isShowing) {
-      setIsRenderingDialog(true)
-    }
-  }, [isShowing])
-
   /* animate the dialog */
   useEffect(() => {
-    function positionDialog() {
+    function updateDialogAlignment() {
       const getShouldCenterDialog = () =>
         modalRef.current.getBoundingClientRect().height <=
         window.innerHeight * 0.95
@@ -66,26 +63,21 @@ export const Dialog = ({
     }
 
     if (isShowing && isRenderingDialog) {
-      positionDialog()
+      updateDialogAlignment()
+
       tl.to(overlayRef.current, { opacity: 0.75 }, 0)
       tl.to(modalRef.current, { opacity: 1 }, 0.1)
 
-      window.addEventListener('resize', positionDialog)
+      window.addEventListener('resize', updateDialogAlignment)
       return () => {
-        window.removeEventListener('resize', positionDialog)
+        window.removeEventListener('resize', updateDialogAlignment)
       }
     }
   }, [isRenderingDialog, isShowing])
 
-  /* lock the scroll */
-  useEffect(() => {
-    if (isShowing) {
-      const rootNode = document.querySelector('#__next')
-
-      disableBodyScroll(rootNode)
-      return () => enableBodyScroll(rootNode)
-    }
-  }, [isShowing])
+  useLockScroll({
+    locked: isShowing
+  })
 
   return (
     <Portal>
