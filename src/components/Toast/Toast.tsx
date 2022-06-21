@@ -1,7 +1,7 @@
 import { animated, useSpring } from '@react-spring/web'
 import { Union } from 'icons'
 import { Children, cloneElement, ReactElement, ReactNode } from 'react'
-import { styled, useInvertedThemeClassName } from 'theme'
+import { media, styled, useInvertedThemeClassName } from 'theme'
 
 import { Button } from '../Button'
 import { IconWrapper } from '../IconWrapper'
@@ -24,10 +24,14 @@ export const Toast = ({ title, body, buttons, onClose, icon }: ToastProps) => {
   const themeClassName = useInvertedThemeClassName()
 
   return (
-    <StyledToast className={themeClassName} style={styles}>
+    <StyledToast
+      className={themeClassName}
+      style={styles}
+      containsBody={Boolean(body)}
+    >
       {icon &&
         cloneElement(Children.only(icon), {
-          size: '24px'
+          size: 'large'
         })}
       <StyledBodyContent>
         <Text variant='primary'>{title}</Text>
@@ -54,12 +58,24 @@ const StyledToast = styled(animated.div, {
   display: 'flex',
   position: 'relative',
   backgroundColor: '$colors$white',
+  alignItems: 'center',
   boxShadow: '0px 4px 10px 0px $colors$dark15, 0 0 0 1px $colors$dark20',
-  padding: '$8 $7',
-  columnGap: '$space$2',
+  padding: '$9 $6',
+  columnGap: '$space$10',
   borderRadius: '$1',
-  width: '90%',
-  maxWidth: '22rem'
+  width: '95%',
+  maxWidth: '22rem',
+  [media.sm]: {
+    maxWidth: '100%'
+  },
+  variants: {
+    containsBody: {
+      true: {
+        padding: '$9 $6 $11',
+        alignItems: 'flex-start'
+      }
+    }
+  }
 })
 
 const StyledBodyContent = styled('div', {
@@ -79,5 +95,9 @@ const StyledDivForButtons = styled('div', {
   alignItems: 'center',
   justifyContent: 'flex-end',
   columnGap: '$space$2',
-  paddingTop: '$5'
+  paddingTop: '$5',
+  [media.sm]: {
+    justifyContent: 'center',
+    paddingTop: '$6'
+  }
 })
