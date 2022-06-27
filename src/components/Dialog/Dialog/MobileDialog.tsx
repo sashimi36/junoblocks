@@ -1,8 +1,8 @@
 import gsap from 'gsap'
-import Portal from '@reach/portal'
 import { ReactNode, useEffect, useRef } from 'react'
 import { styled, useThemeClassName } from 'theme'
 
+import { Portal } from '../../Portal'
 import { DialogContextProvider } from '../DialogContext'
 import { useLockScroll } from './hooks/useLockScroll'
 import { useDeferredDialogIsShowing } from './hooks/useDeferredDialogIsShowing'
