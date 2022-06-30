@@ -29,7 +29,6 @@
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
     "@babel/runtime": "^7.17.9",
-    "@reach/tooltip": "^0.16.2",
     "@react-spring/web": "^9.4.4",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^21.1.0",
@@ -64,7 +63,8 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@reach/tooltip": "^0.16.2",
+    "@popperjs/core": "^2.11.5",
+    "react-popper": "^2.3.0",
     "@react-spring/web": "^9.4.4",
     "@stitches/react": "^1.2.8",
     "body-scroll-lock": "^4.0.0-beta.0",

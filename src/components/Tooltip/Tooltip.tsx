@@ -1,137 +1,86 @@
-import { Position, TooltipPopup, useTooltip } from '@reach/tooltip'
 import { animated, useTransition } from '@react-spring/web'
 import {
   cloneElement,
-  ComponentProps,
   ReactElement,
+  ReactNode,
   useEffect,
-  useState,
+  useState
 } from 'react'
+import { usePopper } from 'react-popper'
 
 import { styled } from '../../theme'
 import { Text } from '../Text'
+import { Portal } from '../Portal'
+import { Options } from '@popperjs/core'
 
-type TooltipProps = Omit<ComponentProps<typeof TooltipPopup>, 'triggerRect'> & {
-  delayHidingOnClick?: boolean
-  delayHidingOnClickTimeoutMs?: number
+type TooltipProps = {
   children: ReactElement
+  label: string | ReactNode
+  placement: Options['placement']
 }
 
-const OFFSET_DEFAULT = 8
+export function Tooltip({ children, label, ...options }: TooltipProps) {
+  const [referenceElement, setReferenceElement] = useState(null)
+  const [popperElement, setPopperElement] = useState(null)
+  const { styles, attributes } = usePopper(
+    referenceElement,
+    popperElement,
+    options
+  )
 
-export const position: Position = (
-  triggerRect,
-  tooltipRect,
-  offset = OFFSET_DEFAULT
-) => {
-  const { innerWidth: windowWidth, innerHeight: windowHeight } = window
-
-  if (!triggerRect || !tooltipRect) {
-    return {}
-  }
-
-  let collisions = {
-    top: triggerRect.top - tooltipRect.height < 0,
-    right: windowWidth < triggerRect.left + tooltipRect.width,
-    bottom: windowHeight < triggerRect.bottom + tooltipRect.height + offset,
-    left: triggerRect.left - tooltipRect.width < 0,
-  }
-
-  let directionRight = collisions.right && !collisions.left
-  let directionUp = collisions.bottom && !collisions.top
-
-  return {
-    left: directionRight
-      ? `${triggerRect.right - tooltipRect.width + window.pageXOffset}px`
-      : `${
-          triggerRect.left +
-          triggerRect.width / 2 -
-          tooltipRect.width / 2 +
-          window.pageXOffset
-        }px`,
-    top: directionUp
-      ? `${
-          triggerRect.top - offset - tooltipRect.height + window.pageYOffset
-        }px`
-      : `${
-          triggerRect.top + offset + triggerRect.height + window.pageYOffset
-        }px`,
-  }
-}
-
-export function Tooltip({
-  children,
-  label,
-  delayHidingOnClick,
-  delayHidingOnClickTimeoutMs = 1500,
-  ...props
-}: TooltipProps) {
-  const [overrideIsVisible, setOverrideIsVisible] = useState<
-    boolean | undefined
-  >(undefined)
-
-  const [trigger, tooltip, isVisible] = useTooltip({
-    onMouseDown: () => {
-      if (delayHidingOnClick) {
-        setOverrideIsVisible(true)
-      }
-    },
-  })
+  const [isShowing, setIsShowing] = useState(false)
 
   useEffect(() => {
-    if (delayHidingOnClick && overrideIsVisible) {
-      let timeout = setTimeout(() => {
-        setOverrideIsVisible(undefined)
-      }, delayHidingOnClickTimeoutMs)
+    const show = () => setIsShowing(true)
+    const hide = () => setIsShowing(false)
 
-      return () => clearTimeout(timeout)
+    if (referenceElement) {
+      referenceElement.addEventListener('mouseenter', show)
+      referenceElement.addEventListener('mouseleave', hide)
+      return () => {
+        referenceElement.removeEventListener('mouseenter', show)
+        referenceElement.removeEventListener('mouseleave', hide)
+      }
     }
-  }, [overrideIsVisible, delayHidingOnClick, delayHidingOnClickTimeoutMs])
-
-  const isShowing =
-    typeof overrideIsVisible === 'boolean' ? overrideIsVisible : isVisible
-
-  tooltip.isVisible = isShowing
+  }, [referenceElement])
 
   const transitions = useTransition(isShowing, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
-    leave: { opacity: 0 },
+    leave: { opacity: 0 }
   })
 
   return (
     <>
-      {cloneElement(children, trigger)}
-      {transitions(
-        ({ opacity }, item) =>
-          item && (
-            <StyledTooltip
-              {...tooltip}
-              {...props}
-              position={position}
-              style={{
-                opacity: opacity.interpolate((value) => {
-                  if (!tooltip.isVisible) return 0
-                  return value
-                }),
-              }}
-              label={
-                <Text as="div" variant="caption" color="white">
+      {cloneElement(children, { ref: setReferenceElement })}
+      <Portal>
+        {transitions(
+          ({ opacity }, item) =>
+            item && (
+              <StyledTooltip
+                ref={setPopperElement}
+                style={{
+                  ...styles.popper,
+                  opacity
+                }}
+                {...attributes.popper}
+              >
+                <Text as='div' variant='caption' color='white'>
                   {label}
                 </Text>
-              }
-            />
-          )
-      )}
+              </StyledTooltip>
+            )
+        )}
+      </Portal>
     </>
   )
 }
 
-const StyledTooltip = styled(animated(TooltipPopup), {
+const StyledTooltip = styled(animated.div, {
   position: 'absolute',
   backgroundColor: '$backgroundColors$tooltip',
   boxShadow: '0px 4px 10px 0px $colors$dark15, 0 0 0 1px $colors$dark20',
   padding: '$4 $6',
   borderRadius: '$1',
-  zIndex: 999,
+  zIndex: 999
 })
