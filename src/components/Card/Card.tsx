@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ForwardedRef, forwardRef } from 'react'
 
-import { media, styled } from '../theme'
+import { media, styled } from 'theme'
 
 const StyledDivForCardWrapper = styled('div', {
   $$backgroundColor: '$colors$white',
@@ -118,11 +118,13 @@ const StyledDivForCardWrapper = styled('div', {
   },
 })
 
+export type CardProps = Omit<
+  ComponentPropsWithoutRef<typeof StyledDivForCardWrapper>,
+  'key'
+>
+
 const CardComponent = (
-  {
-    children,
-    ...props
-  }: Omit<ComponentPropsWithoutRef<typeof StyledDivForCardWrapper>, 'key'>,
+  { children, ...props }: CardProps,
   ref: ForwardedRef<any>
 ) => {
   return (
