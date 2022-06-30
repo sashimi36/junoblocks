@@ -1,7 +1,7 @@
-import { Portal } from '@reach/portal'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { styled } from 'theme'
 
+import { Portal } from './Portal'
 import { useOnClickOutside } from '../hooks/useOnClickOutside'
 import { Button, ButtonProps } from './Button'
 
