@@ -54,7 +54,7 @@ export const themeColorTokens = {
     secondary: '$colors$dark20',
     tertiary: '$colors$dark30',
     toast: '$colors$dark85',
-    tooltip: '$colors$dark95',
+    tooltip: '$colors$light95',
     tint: '$colors$secondary20',
     error: '$colors$error15',
     confirm: '$colors$valid20'
