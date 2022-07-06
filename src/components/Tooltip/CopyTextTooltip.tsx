@@ -1,8 +1,6 @@
-import { Valid } from 'icons'
+import { ValidIcon } from 'icons'
 import { ReactElement, useEffect, useState } from 'react'
-import { styled } from 'theme'
 
-import { IconWrapper } from '../IconWrapper'
 import { Tooltip } from './Tooltip'
 
 type CopyTextTooltipProps = {
@@ -34,7 +32,9 @@ export const CopyTextTooltip = ({
   }
 
   function handleDismiss() {
-    setCopied(false)
+    setTimeout(() => {
+      setCopied(false)
+    }, 1200)
   }
 
   useDismissCopiedState({
@@ -45,20 +45,8 @@ export const CopyTextTooltip = ({
 
   return (
     <Tooltip
-      delayHidingOnClick={true}
-      delayHidingOnClickTimeoutMs={successStateShowingTimeMs}
-      label={
-        <StyledDivForToastContent>
-          {copied ? (
-            <>
-              <IconWrapper icon={<Valid />} color='valid' />
-              {successLabel}
-            </>
-          ) : (
-            label
-          )}
-        </StyledDivForToastContent>
-      }
+      label={copied ? successLabel : label}
+      icon={copied ? <ValidIcon color='valid' /> : undefined}
       aria-label={ariaLabel}
     >
       {children({ onClick: handleCopy, onMouseLeave: handleDismiss, copied })}
@@ -77,9 +65,3 @@ const useDismissCopiedState = ({ copied, setCopied, timeoutMs }) => {
     }
   }, [copied, setCopied, timeoutMs])
 }
-
-const StyledDivForToastContent = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  columnGap: '$space$2'
-})
