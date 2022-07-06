@@ -16,10 +16,11 @@ import {
   UseFloatingProps
 } from '@floating-ui/react-dom'
 
-import { styled, useInvertedThemeClassName } from '../../theme'
+import { styled } from '../../theme'
 import { Text } from '../Text'
 import { Portal } from '../Portal'
 import { Inline } from '../Inline'
+import { computeArrowStyles } from './computeArrowStyles'
 
 type TooltipProps = {
   /* reference element. has to be able to receive `ref` */
@@ -33,7 +34,7 @@ type TooltipProps = {
   /*
    * relative position to the reference element
    * note: left or right placement position will not render arrows
-   * as it is currently not supported.
+   * next to the reference element as it isn't currently supported.
    * */
   placement?: UseFloatingProps['placement']
 }
@@ -95,8 +96,11 @@ export function Tooltip({
     leave: { opacity: 0 }
   })
 
-  const invertedThemeClassName = useInvertedThemeClassName()
-
+  /*
+   * - render top offset to compensate for the space that icon takes if there's an icon + body
+   * - render bottom offset for body text if we're rendering an icon otherwise let the tooltip
+   *   wrapper take care for the offsets
+   * */
   const tooltipContent = (
     <div data-tooltip-content=''>
       <Text
@@ -127,7 +131,7 @@ export function Tooltip({
         {transitions(
           ({ opacity }, item) =>
             item && (
-              <div className={invertedThemeClassName}>
+              <>
                 <StyledTooltip
                   ref={floating}
                   includesIcon={Boolean(icon)}
@@ -139,6 +143,10 @@ export function Tooltip({
                   }}
                 >
                   {icon ? (
+                    /*
+                     * when there's body text, the icon is rendered at the top left corner
+                     * otherwise let's render it in the center of the base line
+                     * */
                     <Inline gap={3} align={body ? 'flex-start' : 'center'}>
                       {cloneElement(icon, {
                         size: 'large',
@@ -150,7 +158,7 @@ export function Tooltip({
                     tooltipContent
                   )}
 
-                  <StyledWrapperForTooltip
+                  <StyledWrapperForArrow
                     ref={arrowRef}
                     style={computeArrowStyles(placement, {
                       x: arrowX,
@@ -158,9 +166,9 @@ export function Tooltip({
                     })}
                   >
                     <StyledArrowForTooltip />
-                  </StyledWrapperForTooltip>
+                  </StyledWrapperForArrow>
                 </StyledTooltip>
-              </div>
+              </>
             )
         )}
       </Portal>
@@ -176,7 +184,7 @@ const StyledArrowForTooltip = styled('div', {
   border: '1px solid $borderColors$inactive'
 })
 
-const StyledWrapperForTooltip = styled('div', {
+const StyledWrapperForArrow = styled('div', {
   clipPath: 'inset(0% 0% 50% 0%)',
   position: 'absolute',
   zIndex: '$1'
@@ -206,30 +214,3 @@ const StyledTooltip = styled(animated.div, {
     zIndex: '$2'
   }
 })
-
-function computeArrowStyles(
-  placement: UseFloatingProps['placement'] = 'bottom',
-  { x, y: _ }
-) {
-  /* not providing the support for arrow rendered on the side of the tooltip just yet */
-  if (placement.includes('right') || placement.includes('left')) {
-    return {
-      display: 'none'
-    }
-  } else if (placement.includes('top')) {
-    return {
-      transform: 'translateY(50%) rotateZ(180deg)',
-      bottom: 0,
-      left: x ?? 0
-    }
-  } else if (placement.includes('bottom')) {
-    return {
-      transform: 'translateY(-50%)',
-      top: 0,
-      left: x ?? 0
-    }
-  }
-  return {
-    display: 'none'
-  }
-}
