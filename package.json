@@ -6,6 +6,7 @@
   "repository": "https://github.com/sashimi36/junoblocks",
   "main": "build/index.js",
   "module": "build/index.js",
+  "types": "build/index.d.ts",
   "scripts": {
     "dev": "rimraf build && concurrently npm:watch:*",
     "watch:ts": "tsc --watch",
@@ -23,7 +24,7 @@
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
-    "@babel/plugin-transform-react-jsx": "^7.17.3",
+    "@babel/plugin-transform-react-jsx": "^7.18.3",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
