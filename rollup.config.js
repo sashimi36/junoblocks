@@ -22,10 +22,10 @@ export default {
     }), // Resolves node modules
     babel({
       extensions: EXTENSIONS, // Compile our TypeScript files
-      babelHelpers: 'runtime', // EDIT(2021-11-18): "inline" is not recommended. Please see the details in https://github.com/kraftdorian/react-ts-rollup-starter-lib/issues/1
+      babelHelpers: 'bundled', // EDIT(2021-11-18): "inline" is not recommended. Please see the details in https://github.com/kraftdorian/react-ts-rollup-starter-lib/issues/1
       include: EXTENSIONS.map((ext) => `src/**/*${ext}`),
       plugins: [
-        '@babel/plugin-transform-runtime',
+        ['@babel/plugin-transform-runtime', { helpers: false }],
         ['@babel/plugin-transform-react-jsx', { runtime: 'automatic' }]
       ],
       presets: ['@babel/env', '@babel/preset-react'],
