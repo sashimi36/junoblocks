@@ -34,8 +34,46 @@ const getDarkTheme = (themes) =>
 const getLightTheme = (themes) =>
   themes.find((t) => t.name === 'light') || themes[0]
 
+type ThemeOption = 'auto' | 'dark' | 'light'
+
 export const useControlTheme = () => {
-  const [{ theme }, setTheme] = useRecoilState(themeAtom)
+  const [{ theme, touched }, setTheme] = useRecoilState(themeAtom)
+
+  // Effects for system theme option
+  useEffect(() => {
+    function handleChangeTheme(event) {
+      if (event.matches) {
+        setTheme((prev) => ({
+          ...prev,
+          theme: getDarkTheme(prev.themes),
+          touched: false
+        }))
+      } else {
+        setTheme((prev) => ({
+          ...prev,
+          theme: getLightTheme(prev.themes),
+          touched: false
+        }))
+      }
+    }
+
+    if (!touched) {
+      const media = window.matchMedia('(prefers-color-scheme: dark)')
+      media.addEventListener('change', handleChangeTheme)
+
+      if (media.matches) {
+        setTheme((prev) => ({
+          ...prev,
+          theme: getDarkTheme(prev.themes),
+          touched: false
+        }))
+      }
+
+      return () => {
+        media.removeEventListener('change', handleChangeTheme)
+      }
+    }
+  }, [touched, setTheme])
 
   return {
     theme,
@@ -69,21 +107,20 @@ export const useControlTheme = () => {
       })
     },
     /* should be renamed to something like switchTheme */
-    toggle() {
-      setTheme((state) => {
-        const currentTheme = state.theme
-        const currentThemeIndex = state.themes.findIndex(
-          (t) => t === currentTheme
-        )
-
-        const nextThemeIndex = (currentThemeIndex + 1) % state.themes.length
-
-        return {
-          ...state,
-          theme: state.themes[nextThemeIndex],
-          touched: true
-        }
-      })
+    switchTheme(option: ThemeOption) {
+      if (option != 'auto')
+        setTheme((state) => {
+          const themeChoice = state.themes.find((t) => t.name == option)
+          return {
+            ...state,
+            theme: themeChoice,
+            touched: true
+          }
+        })
+      else setTheme((state) => ({ ...state, touched: false }))
+    },
+    get themeOption(): ThemeOption {
+      return touched ? 'auto' : (theme.name as ThemeOption)
     }
   }
 }
