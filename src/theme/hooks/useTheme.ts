@@ -34,8 +34,6 @@ const getDarkTheme = (themes) =>
 const getLightTheme = (themes) =>
   themes.find((t) => t.name === 'light') || themes[0]
 
-type ThemeOption = 'auto' | 'dark' | 'light'
-
 export const useControlTheme = () => {
   const [{ theme, touched }, setTheme] = useRecoilState(themeAtom)
 
@@ -107,7 +105,7 @@ export const useControlTheme = () => {
       })
     },
     /* should be renamed to something like switchTheme */
-    switchTheme(option: ThemeOption) {
+    switchTheme(option: string) {
       if (option != 'auto')
         setTheme((state) => {
           const themeChoice = state.themes.find((t) => t.name == option)
@@ -119,49 +117,10 @@ export const useControlTheme = () => {
         })
       else setTheme((state) => ({ ...state, touched: false }))
     },
-    get themeOption(): ThemeOption {
-      return touched ? 'auto' : (theme.name as ThemeOption)
+    get themeOption(): string {
+      return touched ? 'auto' : theme.name
     }
   }
-}
-
-export const useSubscribeDefaultAppTheme = () => {
-  const [{ touched }, setTheme] = useRecoilState(themeAtom)
-
-  useEffect(() => {
-    function handleChangeTheme(event) {
-      if (event.matches) {
-        setTheme((prev) => ({
-          ...prev,
-          theme: getDarkTheme(prev.themes),
-          touched: false
-        }))
-      } else {
-        setTheme((prev) => ({
-          ...prev,
-          theme: getLightTheme(prev.themes),
-          touched: false
-        }))
-      }
-    }
-
-    if (!touched) {
-      const media = window.matchMedia('(prefers-color-scheme: dark)')
-      media.addEventListener('change', handleChangeTheme)
-
-      if (media.matches) {
-        setTheme((prev) => ({
-          ...prev,
-          theme: getDarkTheme(prev.themes),
-          touched: false
-        }))
-      }
-
-      return () => {
-        media.removeEventListener('change', handleChangeTheme)
-      }
-    }
-  }, [touched, setTheme])
 }
 
 export const useThemeClassName = () => {
