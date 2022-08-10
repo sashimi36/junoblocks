@@ -14,6 +14,9 @@ export const Inline = styled('div', {
       center: {
         alignItems: 'center',
       },
+      baseline: {
+        alignItems: 'baseline'
+      }
     },
     justifyContent: {
       'flex-start': {
