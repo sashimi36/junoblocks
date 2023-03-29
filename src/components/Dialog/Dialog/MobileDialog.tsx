@@ -90,16 +90,18 @@ export const MobileDialog = ({
 }
 
 const StyledDivForModal = styled('div', {
+  opacity: 0,
   backgroundColor: '$backgroundColors$base',
-  zIndex: '$2',
-  width: '100%',
-  height: '100%',
-  minHeight: '100vh',
   position: 'fixed',
-  overflowY: 'auto',
+  zIndex: '$2',
   left: 0,
   top: 0,
-  opacity: 0
+  width: '100%',
+  height: '100vh',
+  overflow: 'scroll',
+  '-webkit-overflow-scrolling': 'touch'
 })
 
-const StyledDivForScrollArea = styled('div', {})
+const StyledDivForScrollArea = styled('div', {
+  minHeight: '100vh'
+})
