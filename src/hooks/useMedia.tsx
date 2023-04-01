@@ -20,8 +20,8 @@ export const useMedia = (value: MediaQueryType) => {
     const updateIsMatching = () =>
       setMatches(window.matchMedia(lightTheme.media[value].value).matches)
 
+    requestAnimationFrame(updateIsMatching)
     window.addEventListener('resize', updateIsMatching)
-
     return () => window.removeEventListener('resize', updateIsMatching)
   }, [value])
 
