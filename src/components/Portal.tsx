@@ -27,6 +27,7 @@ export function Portal({ children, type = 'junoblocks-portal' }: PortalProps) {
     const body = ownerDocument.body
     portalNode.current = ownerDocument?.createElement(type)
     body.appendChild(portalNode.current)
+    portalNode.current.style.display = 'block'
     setIsRenderingPortal(true)
     return () => {
       if (portalNode.current && body) {
