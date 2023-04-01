@@ -100,13 +100,19 @@ const StyledDivForModal = styled('div', {
   top: 0,
   width: '100%',
   height: '100vh',
-  overflow: 'hidden'
+  overflow: 'hidden',
+  overscrollBehavior: 'none'
 })
 
 const StyledDivForScrollArea = styled('div', {
+  position: 'absolute',
+  left: 0,
+  top: 0,
+  width: '100%',
   height: '100vh',
   overflow: 'scroll',
-  '-webkit-overflow-scrolling': 'touch'
+  '-webkit-overflow-scrolling': 'touch',
+  overscrollBehavior: 'contain'
 })
 
 const StyledDivForContent = styled('div', {
