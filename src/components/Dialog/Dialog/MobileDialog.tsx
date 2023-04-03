@@ -81,7 +81,9 @@ export const MobileDialog = ({
             ref={modalRef}
             {...props}
           >
-            <StyledDivForScrollArea>{children}</StyledDivForScrollArea>
+            <StyledDivForScrollArea>
+              <StyledDivForContent>{children}</StyledDivForContent>
+            </StyledDivForScrollArea>
           </StyledDivForModal>
         </DialogContextProvider>
       )}
@@ -93,15 +95,26 @@ const StyledDivForModal = styled('div', {
   opacity: 0,
   backgroundColor: '$backgroundColors$base',
   position: 'fixed',
-  zIndex: '$2',
+  zIndex: '$3',
+  left: 0,
+  top: 0,
+  width: '100%',
+  height: '100vh',
+  overflow: 'hidden',
+  overscrollBehavior: 'none'
+})
+
+const StyledDivForScrollArea = styled('div', {
+  position: 'absolute',
   left: 0,
   top: 0,
   width: '100%',
   height: '100vh',
   overflow: 'scroll',
-  '-webkit-overflow-scrolling': 'touch'
+  '-webkit-overflow-scrolling': 'touch',
+  overscrollBehavior: 'contain'
 })
 
-const StyledDivForScrollArea = styled('div', {
+const StyledDivForContent = styled('div', {
   minHeight: '100vh'
 })
