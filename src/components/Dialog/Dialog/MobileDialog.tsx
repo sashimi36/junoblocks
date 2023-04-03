@@ -66,7 +66,8 @@ export const MobileDialog = ({
   }, [isRenderingDialog, isShowing])
 
   useLockScroll({
-    locked: isShowing
+    locked: isShowing,
+    scrollerRef: modalRef
   })
 
   return (
@@ -81,9 +82,7 @@ export const MobileDialog = ({
             ref={modalRef}
             {...props}
           >
-            <StyledDivForScrollArea>
-              <StyledDivForContent>{children}</StyledDivForContent>
-            </StyledDivForScrollArea>
+            <StyledDivForContent>{children}</StyledDivForContent>
           </StyledDivForModal>
         </DialogContextProvider>
       )}
@@ -95,17 +94,7 @@ const StyledDivForModal = styled('div', {
   opacity: 0,
   backgroundColor: '$backgroundColors$base',
   position: 'fixed',
-  zIndex: '$3',
-  left: 0,
-  top: 0,
-  width: '100%',
-  height: '100vh',
-  overflow: 'hidden',
-  overscrollBehavior: 'none'
-})
-
-const StyledDivForScrollArea = styled('div', {
-  position: 'absolute',
+  zIndex: '$4',
   left: 0,
   top: 0,
   width: '100%',
