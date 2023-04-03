@@ -25,8 +25,9 @@ export const DesktopDialog = ({
 
   const themeClassName = useThemeClassName()
 
-  const modalRef = useRef<HTMLDivElement>()
-  const overlayRef = useRef<HTMLDivElement>()
+  const modalRef = useRef<HTMLDivElement>(null)
+  const scrollerRef = useRef<HTMLDivElement>(null)
+  const overlayRef = useRef<HTMLDivElement>(null)
 
   /* animate the dialog */
   useEffect(() => {
@@ -76,7 +77,8 @@ export const DesktopDialog = ({
   }, [isRenderingDialog, isShowing])
 
   useLockScroll({
-    locked: isShowing
+    locked: isShowing,
+    scrollerRef
   })
 
   return (
@@ -86,7 +88,7 @@ export const DesktopDialog = ({
           onRequestClose={onRequestClose}
           isShowing={isShowing}
         >
-          <StyledDivForScroller>
+          <StyledDivForScroller ref={scrollerRef}>
             <StyledDivForModal
               className={themeClassName}
               ref={modalRef}
@@ -115,7 +117,7 @@ const StyledDivForScroller = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'flex-start',
-  zIndex: 99,
+  zIndex: '$4',
   position: 'fixed',
   left: 0,
   top: 0
