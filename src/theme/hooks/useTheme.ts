@@ -35,62 +35,9 @@ const getLightTheme = (themes) =>
   themes.find((t) => t.name === 'light') || themes[0]
 
 export const useControlTheme = () => {
-  const [{ theme }, setTheme] = useRecoilState(themeAtom)
+  const [{ theme, touched }, setTheme] = useRecoilState(themeAtom)
 
-  return {
-    theme,
-    set: (value: ThemeConfig) => {
-      setTheme((prev) => ({ ...prev, theme: value, touched: true }))
-    },
-    setDarkTheme(enabled: boolean) {
-      setTheme((prev) => {
-        const fallbackTheme =
-          prev.theme !== getDarkTheme(prev.themes)
-            ? prev.theme
-            : getLightTheme(prev.themes)
-        return {
-          ...prev,
-          theme: enabled ? getDarkTheme(prev.themes) : fallbackTheme,
-          touched: true
-        }
-      })
-    },
-    setLightTheme(enabled: boolean) {
-      setTheme((prev) => {
-        const fallbackTheme =
-          prev.theme !== getLightTheme(prev.themes)
-            ? prev.theme
-            : getDarkTheme(prev.themes)
-        return {
-          ...prev,
-          theme: enabled ? getLightTheme(prev.themes) : fallbackTheme,
-          touched: true
-        }
-      })
-    },
-    /* should be renamed to something like switchTheme */
-    toggle() {
-      setTheme((state) => {
-        const currentTheme = state.theme
-        const currentThemeIndex = state.themes.findIndex(
-          (t) => t === currentTheme
-        )
-
-        const nextThemeIndex = (currentThemeIndex + 1) % state.themes.length
-
-        return {
-          ...state,
-          theme: state.themes[nextThemeIndex],
-          touched: true
-        }
-      })
-    }
-  }
-}
-
-export const useSubscribeDefaultAppTheme = () => {
-  const [{ touched }, setTheme] = useRecoilState(themeAtom)
-
+  // Effects for system theme option
   useEffect(() => {
     function handleChangeTheme(event) {
       if (event.matches) {
@@ -125,6 +72,55 @@ export const useSubscribeDefaultAppTheme = () => {
       }
     }
   }, [touched, setTheme])
+
+  return {
+    theme,
+    set: (value: ThemeConfig) => {
+      setTheme((prev) => ({ ...prev, theme: value, touched: true }))
+    },
+    setDarkTheme(enabled: boolean) {
+      setTheme((prev) => {
+        const fallbackTheme =
+          prev.theme !== getDarkTheme(prev.themes)
+            ? prev.theme
+            : getLightTheme(prev.themes)
+        return {
+          ...prev,
+          theme: enabled ? getDarkTheme(prev.themes) : fallbackTheme,
+          touched: true
+        }
+      })
+    },
+    setLightTheme(enabled: boolean) {
+      setTheme((prev) => {
+        const fallbackTheme =
+          prev.theme !== getLightTheme(prev.themes)
+            ? prev.theme
+            : getDarkTheme(prev.themes)
+        return {
+          ...prev,
+          theme: enabled ? getLightTheme(prev.themes) : fallbackTheme,
+          touched: true
+        }
+      })
+    },
+    /* should be renamed to something like switchTheme */
+    switchTheme(option: string) {
+      if (option != 'auto')
+        setTheme((state) => {
+          const themeChoice = state.themes.find((t) => t.name == option)
+          return {
+            ...state,
+            theme: themeChoice,
+            touched: true
+          }
+        })
+      else setTheme((state) => ({ ...state, touched: false }))
+    },
+    get themeOption(): string {
+      return touched ? 'auto' : theme.name
+    }
+  }
 }
 
 export const useThemeClassName = () => {
